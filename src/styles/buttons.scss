@@ -1,0 +1,65 @@
+.btn {
+  @apply inline-block rounded border border-transparent px-5 py-3 font-medium capitalize duration-300 transition-transform ease-in-out;
+
+  &.has-icon {
+    @apply pr-10 relative overflow-hidden;
+
+    .icon {
+      @apply absolute px-2.5 flex items-center justify-center right-0 top-1/2 -translate-y-1/2 bg-primary backdrop-brightness-200 h-full;
+
+      svg {
+        @apply w-4 h-4 transition;
+      }
+    }
+
+    &:hover .icon svg {
+      @apply translate-x-[3px];
+    }
+  }
+}
+
+.btn-sm {
+  @apply rounded-sm px-6 py-2.5 font-medium text-[15px];
+}
+
+.btn-primary {
+  @apply bg-primary/90 hover:bg-primary text-white no-underline hover:-translate-y-[3px] hover:shadow-primary hover:shadow-[0_5px_20px];
+}
+
+.btn-outline-primary {
+  @apply border-primary border bg-transparent text-text no-underline hover:text-white hover:bg-primary hover:shadow-primary/50 hover:shadow-[0_5px_20px];
+}
+
+.btn-outline-secondary {
+  @apply border-border hover:border-tertiary focus:border-tertiary bg-transparent text-dark no-underline hover:-translate-y-[3px];
+}
+
+.video-play-btn {
+  @apply w-14 h-14 md:w-[70px] md:h-[70px] rounded-full bg-primary flex items-center justify-center text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition;
+
+  &::after,
+  &::before {
+    content: "";
+    @apply absolute -inset-5 border-4 md:border-[6px] border-primary rounded-full opacity-0 scale-50;
+    backface-visibility: hidden;
+    animation: pulse 2s linear infinite;
+  }
+
+  &::after {
+    animation-delay: 0.7s;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}

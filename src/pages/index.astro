@@ -1,0 +1,150 @@
+---
+import TabList from "@/components/HomeTab";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import BrandSlider from "@/partials/BrandSlider.astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+const { data } = await getEntry("homepage", "-index");
+const {
+  banner,
+  clients_logo_slider,
+  homepage_tab,
+  description,
+  draft,
+  image,
+  meta_title,
+  title,
+} = data;
+---
+
+<Base {...data}>
+  <!-- Banner -->
+  <section class="section bg-light-gray relative">
+    <Image
+      class={"absolute bottom-0 left-0 w-full h-auto"}
+      width={732}
+      height={1050}
+      alt={""}
+      src={"/images/brushes/banner.svg"}
+    />
+    <div class="container">
+      <div class="row gy-5 lg:gy-0">
+        <div class="lg:col-6 xl:col-5 order-1 lg:order-0">
+          <h2 class="h1 mb-6" set:html={markdownify(banner.title)} />
+          <p set:html={markdownify(banner.content)} />
+          <form class="block mt-8">
+            <div class="row gy-3 md:gy-0 g-0 justify-between">
+              <div class="md:col-7">
+                <input
+                  type="email"
+                  placeholder="name@gmail.com"
+                  class="form-input"
+                />
+              </div>
+              <div class="md:col-5">
+                <button
+                  class="btn btn-primary flex-1 has-icon w-full"
+                  type="submit"
+                >
+                  Request Demo
+                  <span class="icon">
+                    <DynamicIcon width={26} height={26} icon="FaAngleRight" />
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="has-divider text-center my-6">
+              <span
+                class="bg-light-gray px-3 relative z-10 uppercase text-dark font-medium"
+                >Or</span
+              >
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-outline-secondary md:max-w-xl mx-auto w-full flex text-center space-x-2 items-center justify-center group"
+            >
+              <Image
+                class={"inline-block transition-none duration-0"}
+                src={"/images/brands/google.png"}
+                width={16}
+                height={15}
+                alt="google"
+              />
+              <span class="group-hover:text-light transition"
+                >Sign Up With Google</span
+              >
+            </button>
+            {
+              banner.button.enable && (
+                <p
+                  class="mt-4 text-light max-w-[440px] content"
+                  set:html={markdownify(banner.button.content)}
+                />
+              )
+            }
+          </form>
+        </div>
+        <div class="lg:col-6 xl:col-7 order-0 lg:order-1">
+          <div class="relative text-center">
+            <button
+              type="button"
+              class="video-play-btn"
+              data-src={banner.video.video_embed_link}
+            >
+              <svg
+                width="1.8em"
+                height="1.8em"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+                >
+                </path>
+              </svg>
+            </button>
+
+            <Image
+              class="mx-auto"
+              width={704}
+              height={492}
+              format="webp"
+              src={banner.image}
+              alt={"banner-img"}
+            />
+            <div class="shape-lg bg-tertiary rounded-circle"></div>
+            <div class="shape-md bg-primary rounded-circle"></div>
+            <div class="shape-sm bg-secondary rounded-circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Banner -->
+
+  <!-- Brand slider -->
+  <BrandSlider {...clients_logo_slider} />
+
+  <!-- HOW IT WORKS -->
+  {
+    homepage_tab.enable && (
+      <section class="section">
+        <div class="container">
+          <div class="row justify-center">
+            <div class="lg:col-6 text-center">
+              <h1 class="mb-4" set:html={markdownify(homepage_tab.title)} />
+              <p set:html={markdownify(homepage_tab.content)} />
+            </div>
+          </div>
+
+          <TabList client:load {...homepage_tab} />
+        </div>
+      </section>
+    )
+  }
+</Base>

@@ -1,0 +1,127 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Service",
+      "url": "/service"
+    },
+    {
+      "name": "Team",
+      "url": "/team"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog"
+    },
+
+    {
+      "name": "Contact",
+      "url": "/contact"
+    },
+
+    {
+      "name": "Pages",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "How it works",
+          "url": "/how-it-works"
+        },
+        {
+          "name": "Testimonial",
+          "url": "/testimonial"
+        },
+        {
+          "name": "Career",
+          "hasChildren": true,
+          "children": [
+            {
+              "name": "Career",
+              "url": "/career"
+            },
+            {
+              "name": "Job Details",
+              "url": "job-details"
+            }
+          ]
+        },
+        {
+          "name": "Blog",
+          "hasChildren": true,
+          "children": [
+            {
+              "name": "Blog",
+              "url": "/blog"
+            },
+            {
+              "name": "Blog Details",
+              "url": "/blog-details"
+            }
+          ]
+        },
+        {
+          "name": "Terms & Condition",
+          "url": "/terms"
+        },
+        {
+          "name": "Pricing",
+          "hasChildren": true,
+          "children": [
+            {
+              "name": "pricing-1",
+              "url": "/pricing"
+            },
+            {
+              "name": "pricing-2",
+              "url": "/pricing-2"
+            }
+          ]
+        },
+        {
+          "name": "Privacy Policy",
+          "url": "/privacy"
+        },
+        {
+          "name": "FAQ",
+          "url": "/faq"
+        },
+
+        {
+          "name": "Changelog",
+          "url": "/changelog"
+        }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "name": "Quick Links",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "About",
+          "url": "/about"
+        },
+        {
+          "name": "Service",
+          "url": "/service"
+        },
+        {
+          "name": "Pricing",
+          "url": "/pricing"
+        },
+        {
+          "name": "Contact",
+          "url": "/contact"
+        }
+      ]
+    }
+  ]
+}
