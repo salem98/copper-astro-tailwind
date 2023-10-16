@@ -54,16 +54,61 @@
 .tab-lists {
   @apply relative;
 
-  li {
-    @apply relative z-10;
+  &::after {
+    content: "";
+    @apply absolute hidden lg:block top-[calc(50%_-_5px)] z-[-1] w-[calc(100%_-_154px)] h-0.5 bg-light/10;
+  }
+}
+
+// counter-list
+.counter-list > * {
+  @apply mt-6;
+}
+
+.counter-list > *:not(:last-child) {
+  @apply mr-14;
+}
+
+.counter-list > *:nth-child(1) h2 {
+  @apply text-secondary;
+}
+
+.counter-list > *:nth-child(2) h2 {
+  @apply text-primary;
+}
+
+.counter-list > *:nth-child(3) h2 {
+  @apply text-tertiary;
+}
+
+// icon box
+.colored-icons > * .icon-box {
+  @apply relative;
+
+  &:hover::after {
+    @apply h-full;
   }
 
   &::after {
     content: "";
-    @apply absolute  top-[calc(50%_-_5px)] z-[-1] w-[calc(100%_-_154px)] h-px bg-light;
+    @apply absolute left-0 bottom-0 w-full h-0 transition-all duration-300 bg-primary z-[-10];
   }
 }
+.colored-icons > *:nth-child(1) svg {
+  @apply text-primary;
+}
 
+.colored-icons > *:nth-child(2) svg {
+  @apply text-tertiary;
+}
+
+.colored-icons > *:nth-child(3) svg {
+  @apply text-secondary;
+}
+
+.colored-icons > *:nth-child(4) svg {
+  @apply text-dark;
+}
 // notice
 .notice {
   @apply mb-6 rounded-lg border px-8 py-6;

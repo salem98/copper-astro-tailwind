@@ -89,15 +89,15 @@ tools:
   title: "Integrate the **tools you already use**"
   content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed."
   logos:
-    - "images/tools/01.png"
-    - "images/tools/02.png"
-    - "images/tools/03.png"
-    - "images/tools/04.png"
-    - "images/tools/05.png"
-    - "images/tools/06.png"
-    - "images/tools/07.png"
-    - "images/tools/08.png"
-    - "images/tools/05.png"
+    - "/images/tools/01.png"
+    - "/images/tools/02.png"
+    - "/images/tools/03.png"
+    - "/images/tools/04.png"
+    - "/images/tools/05.png"
+    - "/images/tools/06.png"
+    - "/images/tools/07.png"
+    - "/images/tools/08.png"
+    - "/images/tools/05.png"
 
 #Achivement
 achivement:
@@ -106,15 +106,15 @@ achivement:
   content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed. At vero eos et"
   funfacts:
     - name: "Years Of <br> Experience"
-      count: "24"
+      count: 24
       extension: "+"
 
     - name: "More Real <br> Active users"
-      count: "10"
+      count: 10
       extension: "M+"
 
     - name: "Employees <br> Work Here"
-      count: "3000"
+      count: 3000
       extension: "+"
 
   services:

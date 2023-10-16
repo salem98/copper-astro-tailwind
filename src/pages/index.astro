@@ -1,5 +1,6 @@
 ---
 import TabList from "@/components/HomeTab";
+import Counter from "@/helpers/Couter";
 import DynamicIcon from "@/helpers/DynamicIcon";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
@@ -11,11 +12,11 @@ const {
   banner,
   clients_logo_slider,
   homepage_tab,
-  description,
-  draft,
-  image,
-  meta_title,
-  title,
+  tools,
+  achivement,
+  about_us,
+  testimonial,
+  workflow,
 } = data;
 ---
 
@@ -136,13 +137,116 @@ const {
       <section class="section">
         <div class="container">
           <div class="row justify-center">
-            <div class="lg:col-6 text-center">
-              <h1 class="mb-4" set:html={markdownify(homepage_tab.title)} />
+            <div class="md:col-8 sm:col-10 lg:col-6 text-center">
+              <h2 class="mb-3" set:html={markdownify(homepage_tab.title)} />
               <p set:html={markdownify(homepage_tab.content)} />
             </div>
           </div>
 
           <TabList client:load {...homepage_tab} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    tools.enable && (
+      <section class="section bg-light-gray">
+        <div class="container">
+          <div class="row">
+            <div class="lg:col-6">
+              <h2 set:html={markdownify(tools.title)} />
+              <p set:html={markdownify(tools.content)} />
+            </div>
+            <div class="lg:col-6">
+              <ul class="relative hidden">
+                {tools.logos.map((logo, index) => {
+                  const isEven = index % 2 === 0;
+
+                  const width =
+                    index === 0
+                      ? "w-[180px] h-[180px]"
+                      : !isEven
+                      ? "w-[114px] h-[114px]"
+                      : "w-[82px] h-[82px]";
+
+                  return (
+                    <li
+                      class={`${width} bg-white flex items-center justify-center rounded-full`}
+                    >
+                      <Image
+                        class={"w-auto h-auto"}
+                        src={logo}
+                        alt={"brand-logo"}
+                        width={index === 1 ? 134 : !isEven ? 89 : 46}
+                        height={index === 1 ? 35 : !isEven ? 28 : 15}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    achivement.enable && (
+      <section class="section">
+        <div class="container">
+          <div class="row gy-5 lg:gy-0">
+            <div class="lg:col-6">
+              <div class="row">
+                <div class="md:col-6 lg:col-12">
+                  <h2 class="mb-3" set:html={markdownify(achivement.title)} />
+                  <p
+                    class="pb-8 lg:border-b lg:border-b-border"
+                    set:html={markdownify(achivement.content)}
+                  />
+                </div>
+                <div class="md:col-6 lg:col-12">
+                  <div class="counter-list w-full">
+                    {achivement.funfacts.map((fact) => (
+                      <div class="inline-block">
+                        <h2 class="mb-2.5">
+                          <Counter
+                            client:load
+                            count={fact.count}
+                            suffix={fact.extension}
+                          />
+                        </h2>
+                        <p
+                          class="text-light"
+                          set:html={markdownify(fact.name)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-6">
+              <div class="row g-4 colored-icons">
+                {achivement.services.map((service) => (
+                  <div class="sm:col-6">
+                    <div class="icon-box h-full bg-whtie shadow px-8 py-10 text-center rounded">
+                      <DynamicIcon
+                        client:load
+                        className="w-14 h-14 inline-block mb-6"
+                        icon={service.icon}
+                      />
+                      <h5
+                        class="leading-8"
+                        set:html={markdownify(service.name)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     )

@@ -10,7 +10,7 @@ export function useTabs({
 }: {
   tabs: TabItem;
   initialTabId: number;
-  onChange?: (id: number) => void;
+  onChange: (id: number) => void;
 }) {
   const [selectedTabIndex, setSelectedTab] = useState(() => {
     const indexOfInitialTab = tabs.findIndex((tab, i) => i === initialTabId);
@@ -18,15 +18,10 @@ export function useTabs({
   });
 
   return {
-    tabProps: {
-      tabs,
-      selectedTabIndex,
-      onChange,
-      setSelectedTab,
-    },
+    tabs,
     selectedTab: tabs[selectedTabIndex],
-    contentProps: {
-      selectedTabIndex,
-    },
+    selectedTabIndex,
+    setSelectedTab,
+    onChange,
   };
 }

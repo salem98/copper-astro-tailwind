@@ -1,35 +1,39 @@
 import DynamicIcon from "@/helpers/DynamicIcon";
 import { useTabs } from "@/hooks/useTabs";
-import { markdownify } from "@/lib/utils/textConverter";
+import { humanize, markdownify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 import React from "react";
 
 type TabItem = CollectionEntry<"homepage">["data"]["homepage_tab"];
 
 export default function TabList({ tablist }: TabItem) {
-  const { selectedTab, tabProps } = useTabs({
+  const { selectedTab, onChange, selectedTabIndex, setSelectedTab } = useTabs({
     tabs: tablist,
     initialTabId: 0,
-    onChange: (index: number) => tabProps.setSelectedTab(index),
+    onChange: (index: number) => setSelectedTab(index),
   });
 
+  const { button, content, image, name, title } = selectedTab;
+
   return (
-    <div className="text-center">
-      <ul className="inline-flex flex-wrap items-center justify-center tab-lists">
+    <div className="text-center mt-3">
+      <ul className="inline-flex flex-wrap justify-center items-center overflow-hidden tab-lists">
         {tablist.map((tab, index) => {
           return (
-            <li key={index} className="tab-item relative">
+            <li key={index} className="tab-item col-6 sm:col-4 md:col-3">
               <a
                 onClick={() => onChange(index)}
-                className="px-6 cursor-pointer "
+                className={`px-14 cursor-pointer ${
+                  selectedTabIndex === index ? "text-primary" : "text-light"
+                }`}
               >
                 <DynamicIcon
-                  className="mx-auto mb-3 w-8 h-8 text-light/30"
+                  className={`mx-auto mb-3 w-8 h-8 bg-white transition duration-300 `}
                   icon="FaCircleDot"
                 />
                 <span
-                  className="font-medium"
-                  dangerouslySetInnerHTML={{ __html: markdownify(tab.title) }}
+                  className="font-medium inline-block w-full text-center"
+                  dangerouslySetInnerHTML={{ __html: markdownify(tab.name) }}
                 />
               </a>
             </li>
@@ -37,23 +41,34 @@ export default function TabList({ tablist }: TabItem) {
         })}
       </ul>
 
-      <div className="tab-content mt-20">
-        <div className="row items-center justify-center">
+      <div className="mt-6 lg:mt-12">
+        <div className="row items-center justify-center gy-4 lg:gy-0">
           <div className="lg:col-6">
-            <img src={selectedTab.image} />
+            <img className="mx-auto rounded p-2 bg-white shadow" src={image} />
           </div>
-          <div className="lg:col-6">
-            <h1
+          <div className="lg:col-6 md:col-10 text-left">
+            <h2
               dangerouslySetInnerHTML={{
-                __html: markdownify(selectedTab.title),
+                __html: markdownify(title),
               }}
             />
             <p
+              className="mt-5 mb-7"
               dangerouslySetInnerHTML={{
-                __html: markdownify(selectedTab.content),
+                __html: markdownify(content),
               }}
             />
-            <button className="btn btn-primary">Click</button>
+            {button.enable && (
+              <a
+                href={selectedTab.button.link}
+                className="btn btn-primary has-icon"
+              >
+                {humanize(button.label)}
+                <span className="icon">
+                  <DynamicIcon width={26} height={26} icon="FaAngleRight" />
+                </span>
+              </a>
+            )}
           </div>
         </div>
       </div>

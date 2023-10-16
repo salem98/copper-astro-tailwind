@@ -162,6 +162,60 @@ const homePageCollection = defineCollection({
           }),
         ),
       }),
+      tools: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        content: z.string(),
+        logos: z.array(z.string()),
+      }),
+
+      achivement: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        content: z.string(),
+        funfacts: z.array(
+          z.object({
+            name: z.string(),
+            count: z.number(),
+            extension: z.string(),
+          }),
+        ),
+        services: z.array(
+          z.object({
+            name: z.string(),
+            icon: z.string(),
+          }),
+        ),
+      }),
+
+      workflow: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        image: z.string(),
+        content: z.string(),
+      }),
+
+      about_us: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        image: z.string(),
+        content: z.string(),
+        bulletpoints: z.array(z.string()),
+      }),
+      testimonial: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        content: z.string(),
+        button: buttonObject,
+        testimonial_item: z.array(
+          z.object({
+            name: z.string(),
+            image: z.string(),
+            designation: z.string(),
+            content: z.string(),
+          }),
+        ),
+      }),
     }),
   ),
 });

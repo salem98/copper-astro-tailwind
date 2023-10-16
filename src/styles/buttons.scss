@@ -2,7 +2,7 @@
   @apply inline-block rounded border border-transparent px-5 py-3 font-medium capitalize duration-300 transition-transform ease-in-out;
 
   &.has-icon {
-    @apply pr-10 relative overflow-hidden;
+    @apply pr-12 relative overflow-hidden;
 
     .icon {
       @apply absolute px-2.5 flex items-center justify-center right-0 top-1/2 -translate-y-1/2 bg-primary backdrop-brightness-200 h-full;
