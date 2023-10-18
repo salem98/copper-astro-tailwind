@@ -16,6 +16,13 @@ const buttonObject = z.object({
   link: z.string(),
 });
 
+// Social Schema
+const socialObject = z.object({
+  name: z.string(),
+  icon: z.string(),
+  link: z.string(),
+});
+
 // Banner Schema
 const BannerObject = z.object({
   title: z.string(),
@@ -69,17 +76,15 @@ const benifitsObject = z.object({
 
 // Post collection schema
 const blogCollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    date: z.date().optional(),
-    image: z.string().optional(),
-    author: z.string().default("Admin"),
-    categories: z.array(z.string()).default(["others"]),
-    tags: z.array(z.string()).default(["others"]),
-    draft: z.boolean().optional(),
-  }),
+  schema: metaObject.merge(
+    z.object({
+      banner: BannerObject.optional(),
+      date: z.date().optional(),
+      categories: z.array(z.string()).optional(),
+      author: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+    }),
+  ),
 });
 
 // Author collection schema
@@ -220,10 +225,126 @@ const homePageCollection = defineCollection({
   ),
 });
 
+// about collection schema
+const aboutCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      mission: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        image: z.string(),
+        content: z.string(),
+        bulletpoints: z.array(z.string()),
+      }),
+      funfacts: z.object({
+        enable: z.boolean(),
+        funfacts_item: z.array(
+          z.object({
+            name: z.string(),
+            count: z.number(),
+            extension: z.string(),
+          }),
+        ),
+      }),
+      vision: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        image: z.string(),
+        content: z.string(),
+      }),
+
+      featured_testimonial: z.object({
+        enable: z.boolean(),
+        name: z.string(),
+        designation: z.string(),
+        image: z.string(),
+        quote: z.string(),
+        video: z.object({
+          enable: z.boolean(),
+          video_embed_link: z.string(),
+        }),
+      }),
+    }),
+  ),
+});
+
+// about collection schema
+const servicesCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      banner: BannerObject,
+      services: z.array(
+        z.object({
+          name: z.string(),
+          icon: z.string(),
+          content: z.string(),
+        }),
+      ),
+    }),
+  ),
+});
+
+// team collection schema
+const teamCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      banner: BannerObject,
+      team_member: z.array(
+        z.object({
+          name: z.string(),
+          designation: z.string(),
+          image: z.string(),
+          group: z.string(),
+          social: z.array(socialObject),
+        }),
+      ),
+    }),
+  ),
+});
+
+// Contact Collection Schema
+const contactCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      banner: BannerObject,
+      services: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        service_list: z.array(z.string()),
+      }),
+      contact_info: z.object({
+        enable: z.boolean(),
+        title: z.string(),
+        address_list: z.array(z.string()),
+      }),
+    }),
+  ),
+});
+
+// How It Works collection schema
+const howItWorksCollections = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      howItWorks: z.array(
+        z.object({
+          title: z.string(),
+          image: z.string(),
+          description: z.string(),
+        }),
+      ),
+    }),
+  ),
+});
+
 // Export collections
 export const collections = {
   homepage: homePageCollection,
+  about: aboutCollection,
+  services: servicesCollection,
+  team: teamCollection,
   blog: blogCollection,
   authors: authorsCollection,
   pages: pagesCollection,
+  contact: contactCollection,
+  "how-it-works": howItWorksCollections,
 };

@@ -59,7 +59,7 @@ input#nav-toggle:checked ~ .navbar-nav {
 }
 
 .nav-dropdown-list {
-  @apply w-[220px] py-3 px-2.5 mx-auto bg-white  lg:bg-transparent  rounded-md hidden lg:block;
+  @apply w-[220px] py-3 px-2.5 mx-auto bg-primary/10 lg:bg-transparent  rounded-md hidden lg:block text-left;
 
   &.active {
     @apply block;

@@ -6,8 +6,8 @@
         "secondary": "#ffbb33",
         "tertiary": "#1e858b",
         "quaternary": "#21435b",
-        "body": "#CECECE",
-        "border": "#eaeaea",
+        "body": "#eaeaea",
+        "border": "#CECECE",
         "light_gray": "#f6f6f6",
         "theme_light": "#edf6f5",
         "theme_dark": "#1d1c21"

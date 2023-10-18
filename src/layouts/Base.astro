@@ -9,7 +9,6 @@ import "@/styles/main.scss";
 
 // font families
 const pf = theme.fonts.font_family.primary;
-const sf = theme.fonts.font_family?.secondary;
 
 // types for frontmatters
 export interface Props {
@@ -51,9 +50,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href={`https://fonts.googleapis.com/css2?family=${pf}${
-        sf ? "&family=" + sf : ""
-      }&display=swap`}
+      href={`https://fonts.googleapis.com/css2?family=${pf}&display=swap`}
       rel="stylesheet"
     />
 
@@ -148,3 +145,11 @@ const { title, meta_title, description, image, noindex, canonical } =
     <Footer />
   </body>
 </html>
+
+<script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script is:inline>
+AOS.init({
+  duration: 600,
+  once: true,
+});
+</script>

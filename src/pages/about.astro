@@ -1,39 +1,166 @@
 ---
+import Counter from "@/helpers/Couter";
+import DynamicIcon from "@/helpers/DynamicIcon";
 import Base from "@/layouts/Base.astro";
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify, plainify } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
 import { Image } from "astro:assets";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
-const about = await getEntryBySlug("about", "-index");
-const { Content } = await about.render();
-const { title, description, meta_title, image } = about.data;
+const { data } = await getEntry("about", "-index");
+const { mission, funfacts, title, vision, featured_testimonial } = data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <section class="section-sm">
+<Base {...data}>
+  <PageHeader title={title!} />
+
+  <section class="section">
     <div class="container">
-      <div class="row justify-center">
-        <div class="text-center md:col-10 lg:col-7">
-          {
-            image && (
+      <div class="row items-center justify-around gy-5">
+        <div class="lg:col-5 md:col-8 sm:col-10">
+          <h2 class="mb-4" set:html={markdownify(mission.title)} />
+          <p
+            class="pb-4 mb-5 border-b-border/50 border-b"
+            set:html={markdownify(mission.content)}
+          />
+          <ul class="space-y-4">
+            {
+              mission.bulletpoints.map((point) => (
+                <li class="flex ">
+                  <DynamicIcon
+                    className="mr-3 flex-none text-primary stroke-[3px]"
+                    client:load
+                    icon="FaCheck"
+                  />
+                  <p set:html={markdownify(point)} />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="lg:col-5 md:col-8 sm:col-10">
+          <div class="text-center pb-12">
+            <div class="inline-block has-shadow shadow-right has-shapes">
               <Image
-                class="mx-auto mb-6 rounded-lg"
-                src={image}
-                width={200}
-                height={200}
-                alt={title}
-                format="webp"
+                class="mx-autom rounded inline-block"
+                src={mission.image}
+                width={423}
+                height={469}
+                alt={plainify(mission.title)}
               />
-            )
+              <div
+                class="shape-1 shape-md bg-secondary rounded-full opacity-50"
+              >
+              </div>
+              <div
+                class="shape-2 shape-xl bg-tertiary rounded-circle opacity-50"
+              >
+              </div>
+              <div
+                class="shape-3 shape-lg bg-primary rounded-circle opacity-50"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container">
+      <div class="shadow">
+        <div class="has-colored-text row">
+          {
+            funfacts.funfacts_item.map((item, index) => (
+              <div class="lg:col-3 sm:col-6 text-center" data-aos="fade-up">
+                <div class="py-7">
+                  <div
+                    class={` ${
+                      index + 1 === funfacts.funfacts_item.length
+                        ? ""
+                        : "border-r border-r-light-gray"
+                    }`}
+                  >
+                    <p class="mb-2" set:html={markdownify(item.name)} />
+                    <h2 class="text-black">
+                      <Counter
+                        client:idle
+                        count={item.count}
+                        suffix={item.extension}
+                      />
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))
           }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-          <div class="content">
-            <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-lg has-shapes bg-light-gray relative">
+    <Image
+      class={"absolute top-0 left-0 w-full h-6 md:h-auto"}
+      width={732}
+      height={1050}
+      alt={""}
+      src={"/images/brushes/section-top.svg"}
+    />
+    <Image
+      class={"absolute bottom-0 left-0 w-full h-6 md:h-auto"}
+      width={732}
+      height={1050}
+      alt={""}
+      src={"/images/brushes/section-bottom.svg"}
+    />
+
+    <div class="container">
+      <div class="row justify-arround items-center">
+        <div class="lg:col-6">
+          <div class="inline-block has-shadow shadow-left has-shapes">
+            <Image
+              width={423}
+              height={468}
+              src={vision.image}
+              alt={plainify(vision.title)}
+            />
+            <div class="shape-1 shape-md bg-secondary opacity-50"></div>
+            <div class="shape-2 shape-xl bg-tertiary opacity-50"></div>
+            <div class="shape-3 shape-lg bg-primary opacity-50"></div>
+          </div>
+        </div>
+        <div class="lg:col-6">
+          <h2 class="mb-4" set:html={markdownify(vision.title)} />
+          <p set:html={markdownify(vision.content)} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="lg:col-6">
+          <Image
+            src={featured_testimonial.image}
+            width={660}
+            height={468}
+            alt={featured_testimonial.name}
+          />
+        </div>
+
+        <div class="lg:col-6">
+          <div class="flex flex-col justify-center h-full">
+            <h2
+              class="pb-4 border-b border-b-light-gray"
+              set:html={markdownify(featured_testimonial.quote)}
+            />
+            <p class="space-x-2 mt-3">
+              <span set:html={markdownify(featured_testimonial.name)} />
+              <span set:html={markdownify(featured_testimonial.designation)} />
+            </p>
           </div>
         </div>
       </div>

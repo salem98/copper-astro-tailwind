@@ -1,12 +1,12 @@
 ---
-  title: "Your ‘Surge Capacity’ Is Depleted It’s Why You Feel Awful to The Society"
-  image: "/images/blogs/01.jpg"
-  date: 2020-03-14T15:40:24+06:00
-  author: "Ausie Makquis"
-  author_profile: "https://linkedin.com/in/#"
-  description: "this is meta description"
-  categories: ["Technology"]
-  draft: false
+title: "Your ‘Surge Capacity’ Is Depleted It’s Why You Feel Awful to The Society"
+image: "/images/blogs/05.jpg"
+date: 2020-03-14T15:40:24+06:00
+author: "Ausie Makquis"
+author_profile: "https://linkedin.com/in/#"
+description: "this is meta description"
+categories: ["Technology"]
+draft: false
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nec et ipsum ullamcorper venenatis fringilla.

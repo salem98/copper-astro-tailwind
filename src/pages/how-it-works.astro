@@ -1,0 +1,23 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getEntry } from "astro:content";
+const { data } = await getEntry("how-it-works", "-index");
+const { title, howItWorks } = data;
+---
+
+<Base>
+  <PageHeader title={title!} />
+  {
+    howItWorks.map((work) => (
+      <section class="section">
+        <div class="container">
+          <div class="row">
+            <div class="lg:col-6" />
+            <div class="lg:col-6" />
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</Base>

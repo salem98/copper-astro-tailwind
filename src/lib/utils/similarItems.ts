@@ -1,15 +1,23 @@
+import { type CollectionEntry } from "astro:content";
+
 // similer products
-const similerItems = (currentItem: any, allItems: any, slug: string) => {
+const similerItems = (
+  currentItem: CollectionEntry<"blog"> & {
+    data: { tags?: string[]; categories?: string[] };
+  },
+  allItems: CollectionEntry<"blog">[],
+  slug: string,
+) => {
   let categories: string[] = [];
   let tags: string[] = [];
 
   // set categories
-  if (currentItem.data.categories.length > 0) {
+  if (currentItem.data.categories && currentItem.data.categories.length > 0) {
     categories = currentItem.data.categories;
   }
 
   // set tags
-  if (currentItem.data.tags.length > 0) {
+  if (currentItem.data?.tags && currentItem.data.tags?.length > 0) {
     tags = currentItem.data.tags;
   }
 

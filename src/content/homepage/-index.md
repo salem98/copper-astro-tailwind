@@ -175,22 +175,7 @@ testimonial:
       content: "Lorem ipsum dolor sit amet, kasd gubergren, seatakimata dolores et rebum stetclita"
 
     - name: "Angela Markel"
-      image: "/images/users/02.jpg"
-      designation: "CEO, Angular Corporation"
-      content: "Lorem ipsum dolor sit amet, kasd gubergren, seatakimata dolores et rebum stetclita"
-
-    - name: "Angela Markel"
-      image: "/images/users/02.jpg"
-      designation: "CEO, Angular Corporation"
-      content: "Lorem ipsum dolor sit amet, kasd gubergren, seatakimata dolores et rebum stetclita"
-
-    - name: "Angela Markel"
-      image: "/images/users/02.jpg"
-      designation: "CEO, Angular Corporation"
-      content: "Lorem ipsum dolor sit amet, kasd gubergren, seatakimata dolores et rebum stetclita"
-
-    - name: "Angela Markel"
-      image: "/images/users/02.jpg"
+      image: "/images/users/03.jpg"
       designation: "CEO, Angular Corporation"
       content: "Lorem ipsum dolor sit amet, kasd gubergren, seatakimata dolores et rebum stetclita"
 ---

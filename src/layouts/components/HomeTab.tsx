@@ -41,7 +41,7 @@ export default function TabList({ tablist }: TabItem) {
         })}
       </ul>
 
-      <div className="mt-6 lg:mt-12">
+      <div key={selectedTabIndex} className="mt-6 lg:mt-12" data-aos="fade-in">
         <div className="row items-center justify-center gy-4 lg:gy-0">
           <div className="lg:col-6">
             <img className="mx-auto rounded p-2 bg-white shadow" src={image} />

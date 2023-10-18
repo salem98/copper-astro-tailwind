@@ -1,30 +1,151 @@
 ---
 import config from "@/config/config.json";
+import Disqus from "@/helpers/Disqus";
 import Base from "@/layouts/Base.astro";
-import PostSingle from "@/layouts/PostSingle.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import dateFormat from "@/lib/utils/dateFormat";
+import { markdownify } from "@/lib/utils/textConverter";
+import { Image } from "astro:assets";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getSinglePage(config.settings.blog_folder);
+  const { blog_folder } = config.settings;
+  const posts = await getCollection("blog", ({ data, id }) => {
+    return !id.startsWith("-") && !data.draft;
+  });
 
   const paths = posts.map((post) => ({
     params: {
       single: post.slug,
     },
-    props: { post },
+    props: { ...post },
   }));
   return paths;
 }
 
-const { post } = Astro.props;
-const { title, meta_title, description, image } = post.data;
+const posts = await getCollection("blog", ({ data, id }) => {
+  return !id.startsWith("-") && !data.draft;
+});
+
+type Props = CollectionEntry<"blog">;
+const { data, render, slug } = Astro.props;
+const { title, image, date, categories, author } = data;
+const { Content } = await render();
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <PostSingle post={post} />
+<Base {...data}>
+  <section class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 mb-30" data-aos="fade-in">
+          {
+            image && (
+              <Image
+                class="img-fluid rounded mx-auto"
+                src={data.image!}
+                width={370}
+                height={430}
+                alt={title!}
+              />
+            )
+          }
+        </div>
+
+        <div
+          class="lg:col-8 md:col-12 mx-auto"
+          data-aos="fade-in"
+          data-aos-delay="50"
+        >
+          <div class="font-semibold position-relative mb-5">
+            {
+              data.categories?.map((catagory) => (
+                <a class="post-category" href="#!">
+                  {catagory}
+                </a>
+              ))
+            }
+          </div>
+          <h2 class="mb-6" set:html={markdownify(title!)} />
+
+          <div class="font-semibold text-primary mb-3">
+            <a class="text-primary" href="#!" set:html={markdownify(author!)} />
+            <span class="mx-2">|</span>
+            <span set:html={markdownify(dateFormat(date!))} />
+            <span class="mx-2">|</span>
+            <span>10 Mins Read</span>
+          </div>
+
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-12">
+          <Disqus client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-50">
+    <div class="container">
+      <div
+        class="row justify-content-center aos-init aos-animate"
+        data-aos="fade-up"
+      >
+        <div class="col-lg-6 col-md-9 text-center mb-40">
+          <h2 class="section-title">Recent Articles</h2>
+        </div>
+      </div>
+      <div class="row justify-center">
+        <!-- {
+          similarPost.map((post) => {
+            const { slug, data, body } = post;
+            return (
+              <div class="col-lg-4 col-md-6 mb-40">
+                <div class="card border-0 h-100">
+                  <a
+                    class="d-flex flex-fill align-items-center"
+                    href={`${blog_folder}/${slugify(slug)}`}
+                  >
+                    {data.image && (
+                      <img
+                        src={data.image!}
+                        class="card-img-top rounded img-fluid"
+                        width={370}
+                        height={430}
+                      />
+                    )}
+                  </a>
+                  <div class="p-25 pb-0">
+                    <a
+                      class="h4 font-weight-bold d-block mb-15"
+                      href={`${blog_folder}/${slugify(slug)}`}
+                      set:html={markdownify(data.title)}
+                    />
+                    <div class="post-meta font-weight-600 mb-15">
+                      <span set:html={dateFormat(data.date!)} />
+                      <span class="mx-2">|</span>2 Mins Read
+                    </div>
+                    <>
+                      <div class="post-category position-relative mb-15">
+                        {data.categories?.map((catagory) => (
+                          <a
+                            href={"/categories/" + catagory}
+                            class="fw-600 ms-1"
+                            set:html={markdownify(catagory)}
+                          />
+                        ))}
+                      </div>
+                      <p
+                        set:html={markdownify(body.slice(0, summary_length))}
+                      />
+                    </>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        } -->
+      </div>
+    </div>
+  </section>
 </Base>

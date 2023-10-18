@@ -23,7 +23,7 @@
 }
 
 .btn-primary {
-  @apply bg-primary/90 hover:bg-primary text-white no-underline hover:-translate-y-[3px] hover:shadow-primary hover:shadow-[0_5px_20px];
+  @apply bg-primary/90 hover:bg-primary text-white no-underline hover:-translate-y-[3px] hover:shadow-primary/50 hover:shadow-[0_5px_20px];
 }
 
 .btn-outline-primary {

@@ -1,63 +1,141 @@
 ---
 import config from "@/config/config.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
 import Base from "@/layouts/Base.astro";
+import { markdownify, plainify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
-const contact = await getEntryBySlug("contact", "-index");
+const { data } = await getEntry("contact", "-index");
 const { contact_form_action }: { contact_form_action: string } = config.params;
-const { title, description, meta_title, image } = contact.data;
+const { title, banner, contact_info, services } = data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <PageHeader title={title} />
-  <section class="section-sm">
+<Base {...data}>
+  <PageHeader title={title!} />
+  <section class="section has-shapes" data-aos="fade-in" data-aos-delay="150">
     <div class="container">
-      <div class="row">
-        <div class="mx-auto md:col-10 lg:col-6">
-          <form action={contact_form_action} method="POST">
-            <div class="mb-6">
-              <label for="name" class="form-label">
-                Full Name <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder="John Doe"
-                type="text"
-              />
+      <div class="row justify-center mb-10">
+        <div class="lg:col-6 md:col-7 text-center mb-5">
+          <h2 class="mb-4" set:html={markdownify(banner?.title!)} />
+          <p set:html={markdownify(banner?.description!)} />
+        </div>
+      </div>
+
+      <div class="mx-auto mb-10 lg:col-11 xl:col-10">
+        <div class="row gy-5">
+          <div class="lg:col-6">
+            <form
+              class="bg-whtie rounded shadow p-5"
+              action={contact_form_action}
+              method="POST"
+            >
+              <div class="mb-6">
+                <label for="name" class="form-label"> Full Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Jack Barker"
+                  type="text"
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="name" class="form-label"> Working Mail</label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="barker@gmail.com"
+                  type="text"
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="name" class="form-label">Company Website</label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Website"
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label for="message" class="form-label">
+                  Anything else? <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-input"
+                  placeholder="Message goes here..."
+                  rows="4"></textarea>
+              </div>
+            </form>
+          </div>
+
+          <div class="lg:col-5">
+            <div class="row gy-4">
+              <div class="md:col-6 lg:col-12 h-full">
+                <div class="shadow rounded bg-white p-5 h-full">
+                  <h4>
+                    <DynamicIcon
+                      className="text-primary inline-block mr-3"
+                      icon="FaCircleInfo"
+                    />
+                    {plainify(contact_info.title)}
+                  </h4>
+
+                  <ul class="mt-8 space-y-4">
+                    {
+                      contact_info.address_list.map((address, i) => (
+                        <li class="flex items-center font-medium">
+                          <div class="w-6 h-6 rounded-full bg-primary/10 flex-none flex items-center justify-center mr-3">
+                            <DynamicIcon
+                              icon="FaCheck"
+                              className="inline-block w-3 h-3 text-primary"
+                            />
+                          </div>
+                          <a href="#" set:html={markdownify(address)} />
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              </div>
+
+              <div class="md:col-6 lg:col-12 h-full">
+                <div class="shadow rounded bg-white p-5">
+                  <h4>
+                    <DynamicIcon
+                      className="text-primary inline-block mr-3"
+                      icon="FaLocationDot"
+                    />
+                    {plainify(services.title)}
+                  </h4>
+
+                  <ul class="mt-8 space-y-4">
+                    {
+                      services.service_list.map((address, i) => (
+                        <li class="flex items-center font-medium">
+                          <div class="w-6 h-6 rounded-full bg-primary/10 flex-none flex items-center justify-center mr-3">
+                            <DynamicIcon
+                              icon="FaCheck"
+                              className="inline-block w-3 h-3 text-primary"
+                            />
+                          </div>
+                          <a href="#" set:html={markdownify(address)} />
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="mb-6">
-              <label for="email" class="form-label">
-                Working Mail <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="john.doe@email.com"
-                type="email"
-              />
-            </div>
-            <div class="mb-6">
-              <label for="message" class="form-label">
-                Anything else? <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-input"
-                placeholder="Message goes here..."
-                rows="8"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
