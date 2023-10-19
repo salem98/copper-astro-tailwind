@@ -336,6 +336,34 @@ const howItWorksCollections = defineCollection({
   ),
 });
 
+// Testimonial collection schema
+const testimonialCollections = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      banner: BannerObject,
+      testimonial_items: z.array(
+        z.object({
+          name: z.string(),
+          image: z.string(),
+          designation: z.string(),
+          content: z.string(),
+        }),
+      ),
+      featured_testimonial: z.object({
+        enable: z.boolean(),
+        name: z.string(),
+        designation: z.string(),
+        quote: z.string(),
+        image: z.string(),
+        video: z.object({
+          enable: z.boolean(),
+          video_embed_link: z.string(),
+        }),
+      }),
+    }),
+  ),
+});
+
 // Export collections
 export const collections = {
   homepage: homePageCollection,
@@ -347,4 +375,5 @@ export const collections = {
   pages: pagesCollection,
   contact: contactCollection,
   "how-it-works": howItWorksCollections,
+  testimonial: testimonialCollections,
 };

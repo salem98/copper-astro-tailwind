@@ -23,7 +23,10 @@ const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
 ---
 
-<header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
+<header
+  data-aos="fade-in"
+  class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}
+>
   <nav class="navbar container">
     <!-- logo -->
     <div class="order-0">
@@ -153,10 +156,10 @@ const { pathname } = Astro.url;
 </header>
 
 <script is:inline>
-const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
-navLinks.forEach((navlink) => {
-  navlink.addEventListener("click", function () {
-    this.nextElementSibling.classList.toggle("active");
+  const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
+  navLinks.forEach((navlink) => {
+    navlink.addEventListener("click", function () {
+      this.nextElementSibling.classList.toggle("active");
+    });
   });
-});
 </script>

@@ -6,7 +6,6 @@ import { markdownify, plainify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
-
 const { data } = await getEntry("about", "-index");
 const { mission, funfacts, title, vision, featured_testimonial } = data;
 ---
@@ -14,7 +13,7 @@ const { mission, funfacts, title, vision, featured_testimonial } = data;
 <Base {...data}>
   <PageHeader title={title!} />
 
-  <section class="section">
+  <section class="section" data-aos="fade-in" data-aos-delay="150">
     <div class="container">
       <div class="row items-center justify-around gy-5">
         <div class="lg:col-5 md:col-8 sm:col-10">
@@ -70,10 +69,14 @@ const { mission, funfacts, title, vision, featured_testimonial } = data;
   <section class="section pt-0">
     <div class="container">
       <div class="shadow">
-        <div class="has-colored-text row">
+        <div class="has-colored-text row overflow-hidden">
           {
             funfacts.funfacts_item.map((item, index) => (
-              <div class="lg:col-3 sm:col-6 text-center" data-aos="fade-up">
+              <div
+                class="lg:col-3 sm:col-6 text-center"
+                data-aos-delay={index * 100}
+                data-aos="fade-up"
+              >
                 <div class="py-7">
                   <div
                     class={` ${
@@ -83,7 +86,7 @@ const { mission, funfacts, title, vision, featured_testimonial } = data;
                     }`}
                   >
                     <p class="mb-2" set:html={markdownify(item.name)} />
-                    <h2 class="text-black">
+                    <h2 class="text-black h-12">
                       <Counter
                         client:idle
                         count={item.count}

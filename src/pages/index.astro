@@ -23,7 +23,11 @@ const {
 
 <Base {...data}>
   <!-- Banner -->
-  <section class="section bg-light-gray relative">
+  <section
+    class="section bg-light-gray relative"
+    data-aos="fade-in"
+    data-aos-delay="150"
+  >
     <Image
       class={"absolute bottom-0 left-0 w-full h-auto"}
       width={732}
@@ -34,11 +38,7 @@ const {
     <div class="container">
       <div class="row gy-5 lg:gy-0">
         <div class="lg:col-6 xl:col-5 order-1 lg:order-0">
-          <h2
-            data-aos="fade-right"
-            class="h1 mb-6"
-            set:html={markdownify(banner.title)}
-          />
+          <h2 class="h1 mb-6" set:html={markdownify(banner.title)} />
           <p set:html={markdownify(banner.content)} />
           <form class="block mt-8">
             <div class="row gy-3 md:gy-0 g-0 justify-between">
@@ -205,9 +205,12 @@ const {
             <div class="lg:col-6">
               <div class="row">
                 <div class="md:col-6 lg:col-12">
-                  <h2 class="mb-3" set:html={markdownify(achivement.title)} />
+                  <h2
+                    class="mb-3.5 "
+                    set:html={markdownify(achivement.title)}
+                  />
                   <p
-                    class="pb-8 lg:border-b lg:border-b-border"
+                    class="pb-8 lg:border-b lg:border-b-border/80"
                     set:html={markdownify(achivement.content)}
                   />
                 </div>
@@ -215,7 +218,7 @@ const {
                   <div class="counter-list w-full">
                     {achivement.funfacts.map((fact) => (
                       <div class="inline-block">
-                        <h2 class="mb-2.5">
+                        <h2 class="mb-2.5 min-h-[48px]">
                           <Counter
                             client:load
                             count={fact.count}
@@ -234,9 +237,13 @@ const {
             </div>
             <div class="lg:col-6">
               <div class="row g-4 colored-icons">
-                {achivement.services.map((service) => (
+                {achivement.services.map((service, i) => (
                   <div class="sm:col-6">
-                    <div class="icon-box h-full bg-whtie shadow px-8 py-10 text-center rounded">
+                    <div
+                      data-aos="fade-up"
+                      data-aos-delay={i * 100}
+                      class="icon-box h-full bg-whtie shadow px-8 py-10 text-center rounded"
+                    >
                       <DynamicIcon
                         client:load
                         className="w-14 h-14 inline-block mb-6"
