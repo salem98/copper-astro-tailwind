@@ -1,0 +1,137 @@
+---
+import Accordion from "@/helpers/Accordion";
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("career", ({ data, id }) => {
+    return !id.startsWith("-") && !data.draft;
+  });
+
+  const paths = posts.map((post) => ({
+    params: {
+      single: post.slug,
+    },
+    props: { ...post },
+  }));
+  return paths;
+}
+
+const posts = await getCollection("career", ({ data, id }) => {
+  return !id.startsWith("-") && !data.draft;
+});
+
+type Props = CollectionEntry<"career">;
+const { data, render, slug } = Astro.props;
+const { Content } = await render();
+const { title } = data;
+---
+
+<Base {...data}>
+  <PageHeader title={title!} />
+
+  <section class="section">
+    <div class="container">
+      <div class="lg:col-11 mx-auto">
+        <div class="content">
+          <Content />
+        </div>
+        <Accordion client:idle title="Apply for Job">
+          <div class="lg:col-8">
+            <div class="bg-whtie shadow p-5">
+              <form>
+                <div class="row">
+                  <div class="lg:col-6">
+                    <div class="mb-6">
+                      <label for="name" class="form-label !text-base !mb-1">
+                        Full Name <span class="text-dark">*</span>
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        class="form-input"
+                        placeholder="John Doe"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="lg:col-6">
+                    <div class="mb-6">
+                      <label for="name" class="form-label !text-base !mb-1">
+                        Full Name <span class="text-dark">*</span>
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        class="form-input"
+                        placeholder="John Doe"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="name" class="form-label !text-base !mb-1">
+                    Working mail <span class="text-dark">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    placeholder="jack@gmail.com"
+                    type="email"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label for="name" class="form-label !text-base !mb-1">
+                    Current Company</label
+                  >
+                  <input
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    placeholder="Squarespace"
+                    type="text"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label for="name" class="form-label !text-base !mb-1"
+                    >Resume/CV <span class="text-dark">*</span></label
+                  >
+
+                  <input
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    placeholder="Squarespace"
+                    type="file"
+                  />
+
+                  <small
+                    >only doc, pdf or docx file allowed and file size will be
+                    less than 2MB
+                  </small>
+                </div>
+
+                <div class="">
+                  <label for="name" class="form-label !text-base !mb-1">
+                    Current Company</label
+                  >
+                  <textarea
+                    rows="3"
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    placeholder="Squarespace"></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+        </Accordion>
+      </div>
+    </div>
+  </section>
+</Base>

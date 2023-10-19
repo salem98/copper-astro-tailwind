@@ -19,7 +19,7 @@
 }
 
 .btn-sm {
-  @apply rounded-sm px-6 py-2.5 font-medium text-[15px];
+  @apply rounded-sm px-6 py-[9px] font-medium text-[15px];
 }
 
 .btn-primary {
@@ -27,7 +27,7 @@
 }
 
 .btn-outline-primary {
-  @apply border-primary border bg-transparent text-text no-underline hover:text-white hover:bg-primary hover:shadow-primary/50 hover:shadow-[0_5px_20px];
+  @apply border-primary border bg-transparent text-text no-underline hover:text-white hover:bg-primary hover:shadow-primary/50 hover:shadow-[0_5px_20px] hover:-translate-y-[3px] transition ease-linear duration-200;
 }
 
 .btn-outline-secondary {

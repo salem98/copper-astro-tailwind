@@ -1,11 +1,8 @@
 ---
-title: "Privacy"
-meta_title: ""
+title: "Terms & Conditions"
 description: "this is meta description"
 draft: false
 ---
-
-#### Responsibility of Contributors
 
 ### GDPR Compliance
 

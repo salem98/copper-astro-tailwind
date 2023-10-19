@@ -33,6 +33,7 @@ export default defineConfig({
         "@/shortcodes/Youtube",
         "@/shortcodes/Tabs",
         "@/shortcodes/Tab",
+        "@/shortcodes/Faq",
       ],
     }),
     mdx(),
@@ -54,6 +55,6 @@ export default defineConfig({
     extendDefaultPlugins: true,
   },
   build: {
-    format: config.site.trailing_slash ? 'directory' : 'file'
+    format: config.site.trailing_slash ? "directory" : "file",
   },
 });

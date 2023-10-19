@@ -27,11 +27,18 @@
     "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
   },
 
-  "navigation_button": {
-    "enable": true,
-    "label": "Sign Up",
-    "link": ""
-  },
+  "navigation_buttons": [
+    {
+      "enable": true,
+      "label": "Sign Up",
+      "link": ""
+    },
+    {
+      "enable": true,
+      "label": "Login",
+      "link": ""
+    }
+  ],
 
   "disqus": {
     "enable": true,

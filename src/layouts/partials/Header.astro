@@ -19,7 +19,7 @@ export interface INavigationLink {
 }
 
 const { main }: { main: INavigationLink[] } = menu;
-const { navigation_button, settings } = config;
+const { navigation_buttons, settings } = config;
 const { pathname } = Astro.url;
 ---
 
@@ -116,7 +116,7 @@ const { pathname } = Astro.url;
         ))
       }
       {
-        navigation_button.enable && (
+        navigation_buttons.map((navigation_button) => (
           <li class="mt-4 inline-block lg:hidden">
             <a
               class="btn btn-outline-primary btn-sm"
@@ -125,41 +125,36 @@ const { pathname } = Astro.url;
               {navigation_button.label}
             </a>
           </li>
-        )
+        ))
       }
     </ul>
 
     <div class="order-2 flex items-center md:order-2 lg:ml-0 space-x-4">
       {
-        navigation_button.enable && (
-          <a
-            class="btn-outline-primary btn-sm hidden lg:inline-block"
-            href={navigation_button.link}
-          >
-            {navigation_button.label}
-          </a>
-        )
-      }
-
-      {
-        navigation_button.enable && (
-          <a
-            class="btn-outline-primary btn-sm hidden lg:inline-block"
-            href={navigation_button.link}
-          >
-            {navigation_button.label}
-          </a>
-        )
+        navigation_buttons.map((navigation_button) => {
+          return (
+            <>
+              {navigation_button.enable && (
+                <a
+                  class="btn-outline-primary btn-sm hidden lg:inline-block"
+                  href={navigation_button.link}
+                >
+                  {navigation_button.label}
+                </a>
+              )}
+            </>
+          );
+        })
       }
     </div>
   </nav>
 </header>
 
 <script is:inline>
-  const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
-  navLinks.forEach((navlink) => {
-    navlink.addEventListener("click", function () {
-      this.nextElementSibling.classList.toggle("active");
-    });
+const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
+navLinks.forEach((navlink) => {
+  navlink.addEventListener("click", function () {
+    this.nextElementSibling.classList.toggle("active");
   });
+});
 </script>

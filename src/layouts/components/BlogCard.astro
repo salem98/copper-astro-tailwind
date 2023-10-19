@@ -15,7 +15,13 @@ const { title, image, date, categories } = data;
   <a class="flex flex-1 items-center" href={slugify(slug)}>
     {
       image && (
-        <Image class="mb-5" src={image} width={366} height={425} alt={title!} />
+        <Image
+          class="mb-5 mx-auto"
+          src={image}
+          width={366}
+          height={425}
+          alt={title!}
+        />
       )
     }
   </a>
@@ -33,7 +39,7 @@ const { title, image, date, categories } = data;
     </div>
     <a
       class="h5 font-medium block my-2.5 hover:text-primary transition underline-offset-1 decoration-black decoration-1"
-      href={`${blog_folder}/${slugify(slug)}`}
+      href={`/${blog_folder}/${slugify(slug)}`}
       set:html={markdownify(title!)}
     />
     <div class="font-semibold mb-2.5 text-light">

@@ -40,53 +40,23 @@
         },
         {
           "name": "Career",
-          "hasChildren": true,
-          "children": [
-            {
-              "name": "Career",
-              "url": "/career"
-            },
-            {
-              "name": "Job Details",
-              "url": "job-details"
-            }
-          ]
+          "url": "/career"
         },
         {
           "name": "Blog",
-          "hasChildren": true,
-          "children": [
-            {
-              "name": "Blog",
-              "url": "/blog"
-            },
-            {
-              "name": "Blog Details",
-              "url": "/blog-details"
-            }
-          ]
+          "url": "/blog"
         },
         {
           "name": "Terms & Condition",
-          "url": "/terms"
+          "url": "/terms-conditions"
         },
         {
           "name": "Pricing",
-          "hasChildren": true,
-          "children": [
-            {
-              "name": "pricing-1",
-              "url": "/pricing"
-            },
-            {
-              "name": "pricing-2",
-              "url": "/pricing-2"
-            }
-          ]
+          "url": "/pricing"
         },
         {
           "name": "Privacy Policy",
-          "url": "/privacy"
+          "url": "/privacy-policy"
         },
         {
           "name": "FAQ",

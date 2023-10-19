@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import type { IconType } from "react-icons";
 import * as FaIcons from "react-icons/fa6/index.js";
 // import * as AiIcons from "react-icons/ai/index.js";
@@ -20,7 +20,7 @@ const iconLibraries: { [key: string]: IconMap } = {
   fa: FaIcons,
 };
 
-const DynamicIcon: FC<IDynamicIcon> = ({ icon, ...props }) => {
+const DynamicIcon = ({ icon, ...props }: IDynamicIcon) => {
   const IconLibrary = getIconLibrary(icon);
   const Icon = IconLibrary ? IconLibrary[icon] : undefined;
 

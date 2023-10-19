@@ -1,10 +1,10 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const pages = await getSinglePage("pages");
+  const pages = await getCollection("pages");
 
   const paths = pages.map((page) => ({
     params: {
@@ -27,14 +27,10 @@ const { Content } = await page.render();
   image={image}
 >
   <PageHeader title={title} />
-  <section class="section-sm">
+  <section class="section">
     <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-10">
-          <div class="content">
-            <Content />
-          </div>
-        </div>
+      <div class="content">
+        <Content />
       </div>
     </div>
   </section>

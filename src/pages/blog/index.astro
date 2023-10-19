@@ -1,11 +1,9 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 import { getCollection, getEntry } from "astro:content";
-const { blog_folder } = config.settings;
 
 const { data } = await getEntry("blog", "-index");
 const { banner } = data;
@@ -24,7 +22,7 @@ const posts = await getCollection("blog", ({ data, id }) => {
           <p set:html={markdownify(banner?.description!)} />
         </div>
       </div>
-      <div class="row mt-11">
+      <div class="row mt-11 justify-center items-center">
         {
           posts.map((post) => (
             <div class="lg:col-4 md:col-6 mb-5">

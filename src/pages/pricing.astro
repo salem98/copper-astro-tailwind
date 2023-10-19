@@ -1,0 +1,25 @@
+---
+import PricingWrapper from "@/helpers/PageWrapper";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getEntry } from "astro:content";
+
+const { data } = await getEntry("pricing", "-index");
+const { banner, title, pricing_cards } = data;
+---
+
+<Base>
+  <PageHeader title="" />
+  <section class="section" data-aos="fade-in" data-aos-delay="150">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-8 sm:col-10 lg:col-6 text-center">
+          <h2 class="mb-4" set:html={markdownify(banner.title)} />
+          <p set:html={markdownify(banner.description)} />
+        </div>
+      </div>
+      <PricingWrapper client:load {...data} />
+    </div>
+  </section>
+</Base>

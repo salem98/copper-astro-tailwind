@@ -336,6 +336,30 @@ const howItWorksCollections = defineCollection({
   ),
 });
 
+// Career Collection Schema
+const careerCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      job_type: z.string().optional(),
+      banner: BannerObject.optional(),
+      flexibility: flexibilityObject.optional(),
+      intro: introSchemaObject.optional(),
+      benifits: benifitsObject.optional(),
+      gallery: z
+        .object({
+          enable: z.boolean(),
+          gallery_items: z.array(
+            z.object({
+              image: z.string(),
+              width: z.enum(["6", "4", "2"]),
+            }),
+          ),
+        })
+        .optional(),
+    }),
+  ),
+});
+
 // Testimonial collection schema
 const testimonialCollections = defineCollection({
   schema: metaObject.merge(
@@ -364,6 +388,56 @@ const testimonialCollections = defineCollection({
   ),
 });
 
+// Testimonial collection schema
+const faqCollections = defineCollection({
+  schema: metaObject.merge(z.object({})),
+});
+
+// Pricing Collection Schema
+const priceCollection = defineCollection({
+  schema: metaObject.merge(
+    z.object({
+      offer: z.string().optional(),
+      banner: BannerObject,
+      monthly_yearly_toggle: z.string(),
+      pricing_cards: z.array(
+        z.object({
+          name: z.string(),
+          content: z.string().optional(),
+          monthly_content: z.string().optional(),
+          yearly_content: z.string().optional(),
+          recomended: z.boolean().optional(),
+          currency: z.string(),
+          monthly_price: z.string(),
+          yearly_price: z.string(),
+          featured: z.boolean().optional(),
+          button_label: z.string(),
+          button_link: z.string(),
+          services: z.array(z.string()).optional(),
+        }),
+      ),
+
+      pricing_table_data: z
+        .array(
+          z.object({
+            table_row: z.array(
+              z.object({
+                name: z.string(),
+                monthly_icon: z.string(),
+                yearly_icon: z.string(),
+                monthly_count: z.string(),
+                yearly_count: z.string(),
+                monthly_content: z.string(),
+                yearly_content: z.string(),
+              }),
+            ),
+          }),
+        )
+        .optional(),
+    }),
+  ),
+});
+
 // Export collections
 export const collections = {
   homepage: homePageCollection,
@@ -376,4 +450,7 @@ export const collections = {
   contact: contactCollection,
   "how-it-works": howItWorksCollections,
   testimonial: testimonialCollections,
+  career: careerCollection,
+  faq: faqCollections,
+  price: priceCollection,
 };
