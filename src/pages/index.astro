@@ -143,7 +143,7 @@ const {
   <!-- HOW IT WORKS -->
   {
     homepage_tab.enable && (
-      <section data-aos="fade-in" class="section" data-aos="fade-in">
+      <section data-aos="fade-in" class="section pt-0" data-aos="fade-in">
         <div class="container">
           <div class="row justify-center">
             <div class="md:col-8 sm:col-10 lg:col-6 text-center">
@@ -151,7 +151,6 @@ const {
               <p set:html={markdownify(homepage_tab.content)} />
             </div>
           </div>
-
           <TabList client:load {...homepage_tab} />
         </div>
       </section>
@@ -389,9 +388,9 @@ const {
   }
 
   <div id="video-modal" class="overlay">
-    <div class="modal-body overflow-y-auto">
+    <div class="modal-body overflow-y-auto p-6 sm:p-10 max-w-3xl xl:max-w-4xl">
       <div
-        class="h-auto bg-white shadow relative max-w-2xl flex-grow-0 max-h-screen rounded w-full overflow-hidden"
+        class="h-auto bg-white shadow relative flex-grow-0 max-h-screen rounded w-full overflow-hidden"
       >
         <iframe
           class="w-full aspect-video bg-gray-300"
@@ -404,12 +403,3 @@ const {
     </div>
   </div>
 </Base>
-
-<script>
-  const inCircleInit = () =>
-    $(window).width() > 575 &&
-    $("#inCircle-element").length !== 0 &&
-    $(window).scrollTop() >
-      $("#inCircle-element").offset().top - window.innerHeight &&
-    $("#inCircle-element").incircle({ radius: "13.5em", start: -150 });
-</script>

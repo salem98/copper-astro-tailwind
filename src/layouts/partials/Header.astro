@@ -2,6 +2,7 @@
 import Logo from "@/components/Logo.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
 import type { INavigationLink } from "@/types";
 const { main }: { main: INavigationLink[] } = menu;
 const { navigation_buttons, settings } = config;
@@ -100,46 +101,144 @@ const { pathname } = Astro.url;
           </>
         ))
       }
-      {
-        navigation_buttons.map((navigation_button) => (
-          <li class="mt-4 inline-block lg:hidden">
-            <a
-              class="btn btn-outline-primary btn-sm"
-              href={navigation_button.link}
-            >
-              {navigation_button.label}
-            </a>
-          </li>
-        ))
-      }
+
+      <li class="mt-4 inline-block lg:hidden">
+        <button
+          type="button"
+          data-modal
+          data-target="video-modal"
+          class="btn btn-outline-primary btn-sm"
+        >
+          {navigation_buttons[0].label}
+        </button>
+      </li>
+      <li class="mt-4 inline-block lg:hidden">
+        <button type="button" class="btn btn-outline-primary btn-sm">
+          {navigation_buttons[1].label}
+        </button>
+      </li>
     </ul>
 
     <div class="order-2 flex items-center md:order-2 lg:ml-0 space-x-4">
       {
-        navigation_buttons.map((navigation_button) => {
-          return (
-            <>
-              {navigation_button.enable && (
-                <a
-                  class="btn-outline-primary btn-sm hidden lg:inline-block"
-                  href={navigation_button.link}
-                >
-                  {navigation_button.label}
-                </a>
-              )}
-            </>
-          );
-        })
+        navigation_buttons[0].enable && (
+          <button
+            data-modal
+            data-target="register-modal"
+            class="btn-outline-primary btn-sm hidden lg:inline-block"
+          >
+            {navigation_buttons[0].label}
+          </button>
+        )
+      }
+      {
+        navigation_buttons[1].enable && (
+          <button
+            data-modal
+            data-target="register-modal"
+            class="btn-outline-primary btn-sm hidden lg:inline-block"
+          >
+            {navigation_buttons[1].label}
+          </button>
+        )
       }
     </div>
   </nav>
-</header>
 
-<script is:inline>
+  <script is:inline>
   const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
   navLinks.forEach((navlink) => {
     navlink.addEventListener("click", function () {
       this.nextElementSibling.classList.toggle("active");
     });
   });
-</script>
+  </script>
+</header>
+
+<div id="register-modal" class="overlay overflow-y-auto py-12">
+  <div class="modal-body max-w-lg p-6 sm:p-10">
+    <div
+      class="h-auto bg-white shadow relative flex-grow-0 max-h-screen rounded w-full overflow-auto"
+    >
+      <form>
+        <div
+          class="flex justify-between border-b border-b-border p-6 pb-3 mb-3"
+        >
+          <h4>Sign up now</h4>
+          <DynamicIcon icon="FaX" />
+        </div>
+        <div class="p-6">
+          <div class="row">
+            <div class="lg:col-6">
+              <div class="mb-6">
+                <label for="name" class="form-label !text-base !mb-1">
+                  Full Name <span class="text-dark">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="lg:col-6">
+              <div class="mb-6">
+                <label for="name" class="form-label !text-base !mb-1">
+                  Full Name <span class="text-dark">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label for="name" class="form-label !text-base !mb-1">
+              Working mail <span class="text-dark">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              class="form-input"
+              placeholder="jack@gmail.com"
+              type="email"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label for="password" class="form-label !text-base !mb-1">
+              Password <span class="text-dark">*</span>
+            </label>
+            <input
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="jack@gmail.com"
+              type="password"
+            />
+          </div>
+
+          <div>
+            <label for="re-password" class="form-label !text-base !mb-1">
+              Password <span class="text-dark">*</span>
+            </label>
+            <input
+              id="re-password"
+              name="password"
+              class="form-input"
+              placeholder="jack@gmail.com"
+              type="password"
+            />
+          </div>
+          <button class="btn btn-primary mt-5">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

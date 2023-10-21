@@ -1,6 +1,5 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
-import type { ContentEntryModule } from "astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
@@ -80,6 +79,7 @@ const { testimonialItems } = Astro.props;
       bulletClass: `slider-bulet`,
       bulletActiveClass: "active",
     },
+
     breakpoints: {
       768: {
         slidesPerView: 2,

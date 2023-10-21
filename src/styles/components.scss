@@ -542,21 +542,21 @@
 }
 
 // modal
-
 .overlay {
-  @apply flex items-center justify-center fixed inset-0 bg-black/30 backdrop-blur-sm z-[99999] opacity-0 invisible transition-all duration-500 ease-in-out;
+  @apply flex items-center justify-center fixed inset-0 bg-black/30 backdrop-blur-sm z-[99999] opacity-0 invisible duration-500 ease-in-out;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &.active {
     @apply opacity-100 visible;
 
     .modal-body {
-      @apply scale-100;
+      @apply scale-100 opacity-100;
     }
   }
 }
 
 .modal-body {
-  @apply transition-all delay-200 ease-in-out flex flex-grow items-center justify-center max-w-[100vw] scale-50;
+  @apply delay-200 duration-500 ease-in-out flex flex-grow items-center justify-center max-w-[100vw] scale-[.95] opacity-0;
 }
 
 .modal-dialog {
@@ -660,7 +660,6 @@
 }
 
 // pricing table
-
 .pricing-table {
   td.active {
     @apply relative hidden;
@@ -669,32 +668,52 @@
       letter-spacing: 1px;
     }
   }
-
   td,
   th {
-    border: 1px solid #efefef;
-    padding: 20px;
-    width: 20%;
+    @apply border border-border/30 p-5 w-[20%];
   }
   td span {
-    vertical-align: middle;
+    @apply align-middle;
   }
   thead td,
   thead th {
-    @apply bg-primary;
-    border-bottom-width: 1px;
-    border-color: #ff5f7d;
+    @apply bg-primary border-b border-b-primary/60;
   }
   thead td:first-child,
   thead th:first-child {
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-top-left-radius: 25px;
+    @apply border-t-transparent border-l-transparent rounded-tl-[25px];
   }
   thead td:last-child,
   thead th:last-child {
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-top-right-radius: 25px;
+    @apply border-t-transparent border-r-transparent rounded-tr-[25px];
+  }
+
+  @apply max-md:block;
+
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    @apply max-md:block;
+  }
+  thead tr {
+    @apply max-md:absolute max-md:top-[-9999px] max-md:left-[-9999px];
+  }
+  tr {
+    @apply max-md:border-b max-md:border-b-border/50;
+  }
+  td,
+  th {
+    width: initial;
+    @apply max-md:px-2.5 max-md:py-5;
+  }
+  td {
+    @apply max-md:relative max-md:pl-[50%];
+  }
+
+  td:before {
+    content: attr(data-label);
+    @apply hidden max-md:block max-md:absolute max-md:top-2.5 max-md:left-5 max-md:pr-2.5 max-md:whitespace-nowrap max-md:font-bold;
   }
 }
