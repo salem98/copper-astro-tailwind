@@ -68,40 +68,40 @@ pricing_table_data:
   # table column
   - table_row:
       - name: "" # empty
-        monthly_icon: "fas fa-info-circle text-primary"
-        yearly_icon: "fas fa-info-circle text-primary"
+        monthly_icon: "FaCircleInfo"
+        yearly_icon: "FaCircleInfo"
         monthly_count: ""
         yearly_count: ""
         monthly_content: "Pages"
         yearly_content: "Pages"
 
       - name: "Free"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Team"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Business"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Enterprise"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
@@ -110,8 +110,8 @@ pricing_table_data:
   # table column
   - table_row:
       - name: "" # empty
-        monthly_icon: "fas fa-info-circle text-primary"
-        yearly_icon: "fas fa-info-circle text-primary"
+        monthly_icon: FaCircleInfo
+        yearly_icon: FaCircleInfo
         monthly_count: ""
         yearly_count: ""
         monthly_content: "Monthly visits"
@@ -152,8 +152,8 @@ pricing_table_data:
   # table column
   - table_row:
       - name: "" # empty
-        monthly_icon: "fas fa-info-circle text-primary"
-        yearly_icon: "fas fa-info-circle text-primary"
+        monthly_icon: FaCircleInfo
+        yearly_icon: FaCircleInfo
         monthly_count: ""
         yearly_count: ""
         monthly_content: "Collection items"
@@ -194,40 +194,40 @@ pricing_table_data:
   # table column
   - table_row:
       - name: "" # empty
-        monthly_icon: "fas fa-info-circle text-primary"
-        yearly_icon: "fas fa-info-circle text-primary"
+        monthly_icon: FaCircleInfo
+        yearly_icon: FaCircleInfo
         monthly_count: ""
         yearly_count: ""
         monthly_content: "Form submissions"
         yearly_content: "Form submissions"
 
       - name: "Free"
-        monthly_icon: "fas fa-times"
-        yearly_icon: "fas fa-times"
+        monthly_icon: FaXmark
+        yearly_icon: FaXmark
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Team"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Business"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""
         yearly_content: ""
 
       - name: "Enterprise"
-        monthly_icon: "fas fa-check"
-        yearly_icon: "fas fa-check"
+        monthly_icon: FaCheck
+        yearly_icon: FaCheck
         monthly_count: ""
         yearly_count: ""
         monthly_content: ""

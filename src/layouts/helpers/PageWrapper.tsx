@@ -2,6 +2,7 @@ import PricingCard from "@/helpers/PricingCard";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 import React, { useState } from "react";
+import DynamicIcon from "./DynamicIcon";
 
 type Data = CollectionEntry<"pricing">["data"];
 type Props = Data & {
@@ -67,14 +68,14 @@ function PricingTable({ pricing_cards, pricing_table_data }: Data) {
   return (
     <div className="row">
       <div className="col-md-12">
-        <table className="pricing-table shadow">
-          <thead>
+        <table className="pricing-table shadow mx-auto">
+          <thead className="pricing-table-head">
             <tr>
               {pricing_cards.map((item, i) => (
                 <th key={i}>
                   {item.name && (
                     <h3
-                      className="font-bold mx-3"
+                      className="font-bold mx-3 text-white"
                       dangerouslySetInnerHTML={{
                         __html: markdownify(item.name),
                       }}
@@ -88,7 +89,19 @@ function PricingTable({ pricing_cards, pricing_table_data }: Data) {
             {pricing_table_data?.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {row.table_row.map((cell, cellIndex) => (
-                  <td key={cellIndex}>{cell.name}</td>
+                  <td key={cellIndex}>
+                    {cell.monthly_icon && (
+                      <>
+                        <DynamicIcon
+                          className="inline-block mr-2 text-primary"
+                          icon={cell.monthly_icon}
+                        />
+                      </>
+                    )}
+                    <span className="text-light font-medium">
+                      {cell.monthly_content || cell.monthly_count}
+                    </span>
+                  </td>
                 ))}
               </tr>
             ))}

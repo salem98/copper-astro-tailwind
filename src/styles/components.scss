@@ -658,3 +658,43 @@
 .has-colord-icon:nth-child(5n + 1) .icon {
   @apply text-secondary;
 }
+
+// pricing table
+
+.pricing-table {
+  td.active {
+    @apply relative hidden;
+    .recomended {
+      @apply absolute bg-secondary text-white py-6 rotate-45 right-[-29px] top-[26px] text-[10px];
+      letter-spacing: 1px;
+    }
+  }
+
+  td,
+  th {
+    border: 1px solid #efefef;
+    padding: 20px;
+    width: 20%;
+  }
+  td span {
+    vertical-align: middle;
+  }
+  thead td,
+  thead th {
+    @apply bg-primary;
+    border-bottom-width: 1px;
+    border-color: #ff5f7d;
+  }
+  thead td:first-child,
+  thead th:first-child {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-top-left-radius: 25px;
+  }
+  thead td:last-child,
+  thead th:last-child {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-top-right-radius: 25px;
+  }
+}
