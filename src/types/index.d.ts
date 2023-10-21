@@ -1,13 +1,13 @@
-export type Feature = {
-  button: button;
-  image: string;
-  bulletpoints: string[];
-  content: string;
-  title: string;
-};
+export interface IChildNavigationLink {
+  name: string;
+  url: string;
+  description?: string;
+  icon?: string;
+}
 
-export type Button = {
-  enable: boolean;
-  label: string;
-  link: string;
-};
+export interface INavigationLink {
+  name: string;
+  url?: string;
+  hasChildren?: boolean;
+  children?: INavigationLink[];
+}

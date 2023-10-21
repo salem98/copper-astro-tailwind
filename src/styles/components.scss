@@ -542,17 +542,25 @@
 }
 
 // modal
-.modal {
-  @apply fixed inset-0 z-40 hidden h-full w-full overflow-auto;
-  &-overlay {
-    @apply fixed inset-0 z-40 hidden h-full w-full bg-black bg-opacity-40;
+
+.overlay {
+  @apply flex items-center justify-center fixed inset-0 bg-black/30 backdrop-blur-sm z-[99999] opacity-0 invisible transition-all duration-500 ease-in-out;
+
+  &.active {
+    @apply opacity-100 visible;
+
+    .modal-body {
+      @apply scale-100;
+    }
   }
-  &-content {
-    @apply relative top-1/2 z-50 mx-auto max-w-[90%] -translate-y-1/2 rounded-lg bg-body p-8;
-  }
-  &-close {
-    @apply absolute right-3 top-3 h-8 w-8 rounded-full bg-theme-light text-center leading-8 text-dark;
-  }
+}
+
+.modal-body {
+  @apply transition-all delay-200 ease-in-out flex flex-grow items-center justify-center max-w-[100vw] scale-50;
+}
+
+.modal-dialog {
+  @apply overflow-auto w-auto h-auto bg-white shadow relative max-w-[100vw] flex-grow-0 max-h-screen;
 }
 
 // testimonial-slider

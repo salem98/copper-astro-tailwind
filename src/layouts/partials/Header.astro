@@ -1,23 +1,8 @@
 ---
 import Logo from "@/components/Logo.astro";
-import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
-
-export interface IChildNavigationLink {
-  name: string;
-  url: string;
-  description?: string;
-  icon?: string;
-}
-
-export interface INavigationLink {
-  name: string;
-  url?: string;
-  hasChildren?: boolean;
-  children?: INavigationLink[];
-}
-
+import type { INavigationLink } from "@/types";
 const { main }: { main: INavigationLink[] } = menu;
 const { navigation_buttons, settings } = config;
 const { pathname } = Astro.url;
@@ -151,10 +136,10 @@ const { pathname } = Astro.url;
 </header>
 
 <script is:inline>
-const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
-navLinks.forEach((navlink) => {
-  navlink.addEventListener("click", function () {
-    this.nextElementSibling.classList.toggle("active");
+  const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
+  navLinks.forEach((navlink) => {
+    navlink.addEventListener("click", function () {
+      this.nextElementSibling.classList.toggle("active");
+    });
   });
-});
 </script>

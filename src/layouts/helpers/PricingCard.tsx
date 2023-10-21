@@ -101,7 +101,7 @@ const PricingCard = (props: Props) => {
   return (
     <div ref={ref} className="rounded shadow">
       <div className="p-12">
-        <span className="h2 font-bold inline-flex">
+        <span className="h2 font-semibold inline-flex">
           {inView && (
             <CountUp
               className="data-count"

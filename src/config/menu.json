@@ -55,6 +55,10 @@
           "url": "/pricing"
         },
         {
+          "name": "Pricing-2",
+          "url": "/pricing-2"
+        },
+        {
           "name": "Privacy Policy",
           "url": "/privacy-policy"
         },

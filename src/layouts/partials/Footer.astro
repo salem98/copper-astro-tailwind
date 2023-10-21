@@ -1,39 +1,142 @@
 ---
 import Logo from "@/components/Logo.astro";
-import Social from "@/components/Social.astro";
-import config from "@/config/config.json";
+import { params } from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
 import { markdownify } from "@/lib/utils/textConverter";
-
-const { footer }: { footer: { name: string; url: string }[] } = menu;
+import type { INavigationLink } from "@/types";
+import { Image } from "astro:assets";
+const { footer }: { footer: INavigationLink[] } = menu;
 ---
 
-<footer class="bg-theme-light ">
+<footer class="section bg-light-gray has-shapes pb-0">
+  <Image
+    class={"absolute top-0 left-0 w-full h-auto"}
+    width={732}
+    height={1050}
+    alt={""}
+    src={"/images/brushes/footer.svg"}
+  />
   <div class="container">
-    <div class="row items-center py-10">
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
-        <Logo />
+    <div class="row justify-center">
+      <div class="lg:col-6 col-12 text-center">
+        <div class="mb-10">
+          <h2 class="mb-7">
+            Join 75,000+ growing business That <strong
+              >Use Copper To Their Brand</strong
+            >
+          </h2>
+
+          <a href="" class="btn btn-primary has-icon mb-5" type="submit">
+            Get stared with us
+            <span class="icon">
+              <DynamicIcon width={26} height={26} icon="FaAngleRight" />
+            </span>
+          </a>
+        </div>
       </div>
-      <div class="mb-8 text-center lg:col-6 lg:mb-0">
-        <ul>
-          {
-            footer.map((menu) => (
-              <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
-              </li>
-            ))
-          }
-        </ul>
+    </div>
+
+    <div class="border-b border-b-border/30"></div>
+    <div class="row my-16 gy-5 lg:gy-0">
+      <div class="lg:col-4 sm:col-6 col-12">
+        <div class="max-w-xs">
+          <Logo />
+          <p class="mt-7 leading-7">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore dolore magna aliquyam
+            eratnonumy onsetetur
+          </p>
+        </div>
       </div>
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-        <Social source={social.main} className="social-icons" />
+
+      {
+        footer.map((nav) => (
+          <div class="lg:col-2 sm:col-3">
+            <div>
+              <h5 class="font-semibold mb-5">{nav.name}</h5>
+              {nav.children && nav.children.length > 0 && (
+                <ul class="space-y-2">
+                  {nav.children?.map((link) => (
+                    <li>
+                      <a
+                        class="font-medium capitalize hover:text-de text-light hover:text-primary transition hover:underline underline-offset-2 duration-300"
+                        href={link.url}
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        ))
+      }
+
+      <div class="lg:col-2 sm:col-3">
+        <div>
+          <h5 class="font-semibold mb-5">Social Links</h5>
+          <ul class="space-y-2">
+            {
+              social.main.map((social) => (
+                <li>
+                  <a
+                    class="font-medium capitalize hover:text-de text-light hover:text-primary transition hover:underline underline-offset-2 duration-300"
+                    href={social.link}
+                  >
+                    {social.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="lg:col-4 md:col-6">
+        <div>
+          <h5 class="font-semibold mb-5">Lets Subscribe Your Email</h5>
+          <form action="" method="post" novalidate>
+            <div class="flex lg:max-w-[342px]">
+              <input
+                type="email"
+                class="form-input rounded-tr-none rounded-br-none"
+                placeholder="Your email address"
+                required
+              />
+              <a
+                href=""
+                class="btn bg-primary text-white rounded-tl-none rounded-bl-none flex items-center justify-center py-5"
+                type="submit"
+              >
+                <svg
+                  width="31"
+                  height="16"
+                  viewBox="0 0 31 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  ><path
+                    d="M30.7071 8.70808C31.0976 8.31756 31.0976 7.68439 30.7071 7.29387L24.3431.929909C23.9526.539384 23.3195.539384 22.9289.929909 22.5384 1.32043 22.5384 1.9536 22.9289 2.34412l5.6569 5.65686-5.6569 5.65682C22.5384 14.0484 22.5384 14.6815 22.9289 15.072 23.3195 15.4626 23.9526 15.4626 24.3431 15.072l6.364-6.36392zM0 9.00098H30v-2H0v2z"
+                    fill="#fff"></path></svg
+                >
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  <div class="border-t border-border py-7 ">
-    <div class="container text-center text-light ">
-      <p set:html={markdownify(config.params.copyright)} />
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 border-t border-t-border/30 pb-5">
+          <div
+            class="content pt-10 text-center font-medium"
+            set:html={markdownify(params.copyright)}
+          />
+        </div>
+      </div>
     </div>
   </div>
 </footer>

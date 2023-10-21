@@ -416,7 +416,6 @@ const priceCollection = defineCollection({
           services: z.array(z.string()).optional(),
         }),
       ),
-
       pricing_table_data: z
         .array(
           z.object({
@@ -452,5 +451,5 @@ export const collections = {
   testimonial: testimonialCollections,
   career: careerCollection,
   faq: faqCollections,
-  price: priceCollection,
+  pricing: priceCollection,
 };

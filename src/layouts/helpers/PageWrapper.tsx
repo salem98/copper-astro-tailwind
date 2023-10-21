@@ -10,8 +10,8 @@ type Props = Data & {
 
 const PricingWrapper = (props: Props) => {
   const { pricing_cards, offer, layout } = props || {};
-  const [checkd, setCheck] = useState(false);
-  const type = checkd ? "yearly" : "monthly";
+  const [checked, setCheck] = useState(false);
+  const type = checked ? "yearly" : "monthly";
 
   return (
     <>
@@ -22,9 +22,15 @@ const PricingWrapper = (props: Props) => {
               Billed Monthly
             </label>
 
-            <label className="relative inline-flex items-center cursor-pointer mx-2">
-              <input type="checkbox" value="" className="sr-only peer" />
-              <div className="w-14 h-8 border-dark border rounded-full peer peer-checked:after:left-full peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-1 after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+            <label className="relative inline-flex items-center cursor-pointer mx-2 group">
+              <input
+                onChange={(e) => setCheck(e.target.checked)}
+                type="checkbox"
+                value=""
+                className="sr-only peer"
+                checked={checked}
+              />
+              <div className="w-[70px] h-[34px] border-dark border rounded-full peer peer-checked:after:left-[95%] peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-1 after:bg-primary after:rounded-full after:h-[24px] after:w-[24px] after:transition-all"></div>
             </label>
 
             <label className="h5 m-0" id="annually">
@@ -38,7 +44,7 @@ const PricingWrapper = (props: Props) => {
         </div>
       </div>
 
-      {layout !== "Pricing-2" ? (
+      {layout === "Pricing" ? (
         <div className="row">
           {pricing_cards.map((card, i) => {
             return (
@@ -68,7 +74,7 @@ function PricingTable({ pricing_cards, pricing_table_data }: Data) {
                 <th key={i}>
                   {item.name && (
                     <h3
-                      className="font-weight-bold text-white"
+                      className="font-bold mx-3"
                       dangerouslySetInnerHTML={{
                         __html: markdownify(item.name),
                       }}

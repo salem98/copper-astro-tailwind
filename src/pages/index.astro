@@ -100,6 +100,8 @@ const {
               type="button"
               class="video-play-btn"
               data-src={banner.video.video_embed_link}
+              data-modal
+              data-target="video-modal"
             >
               <svg
                 width="1.8em"
@@ -123,6 +125,7 @@ const {
               src={banner.image}
               alt={"banner-img"}
             />
+
             <div class="shape-lg bg-tertiary rounded-circle"></div>
             <div class="shape-md bg-primary rounded-circle"></div>
             <div class="shape-sm bg-secondary rounded-circle"></div>
@@ -131,6 +134,7 @@ const {
       </div>
     </div>
   </section>
+
   <!-- /Banner -->
 
   <!-- Brand slider -->
@@ -164,7 +168,7 @@ const {
               <p set:html={markdownify(tools.content)} />
             </div>
             <div class="lg:col-6">
-              <ul class="relative hidden">
+              <ul class="relative">
                 {tools.logos.map((logo, index) => {
                   const isEven = index % 2 === 0;
 
@@ -383,4 +387,29 @@ const {
       </section>
     )
   }
+
+  <div id="video-modal" class="overlay">
+    <div class="modal-body overflow-y-auto">
+      <div
+        class="h-auto bg-white shadow relative max-w-2xl flex-grow-0 max-h-screen rounded w-full overflow-hidden"
+      >
+        <iframe
+          class="w-full aspect-video bg-gray-300"
+          src=""
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </Base>
+
+<script>
+  const inCircleInit = () =>
+    $(window).width() > 575 &&
+    $("#inCircle-element").length !== 0 &&
+    $(window).scrollTop() >
+      $("#inCircle-element").offset().top - window.innerHeight &&
+    $("#inCircle-element").incircle({ radius: "13.5em", start: -150 });
+</script>

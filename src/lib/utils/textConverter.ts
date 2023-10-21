@@ -8,6 +8,7 @@ export const slugify = (content: string) => {
 
 // markdownify
 export const markdownify = (content: string, div?: boolean) => {
+  if (!content) return "";
   return div ? marked.parse(content) : marked.parseInline(content);
 };
 

@@ -24,6 +24,6 @@
       "primary": "Quicksand:wght@400;500;600;700",
       "primary_type": "sans-serif"
     },
-    "font_size": { "base": "16", "scale": "1.244" }
+    "font_size": { "base": "15", "scale": "1.244" }
   }
 }

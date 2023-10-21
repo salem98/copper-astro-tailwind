@@ -133,7 +133,7 @@ const careers = await getCollection("career", ({ data, id }) => {
               data-aos="fade-up"
               data-dealy={i * 100}
             >
-              <div class="p-6 ">
+              <div class="p-6 sm:max-w-md mx-auto md:max-w-auto">
                 <DynamicIcon
                   className="mx-auto w-8 h-8 mb-4 mb- icon"
                   client:load
@@ -210,14 +210,14 @@ const careers = await getCollection("career", ({ data, id }) => {
       </div>
 
       <div class="lg:col-8 mx-auto">
-        <div class="row g-4 lg:mt-10">
+        <div class="row g-4 mt-10">
           {
             careers.map((career, i) => {
               const { data, slug } = career;
               const { job_type, title } = data;
               return (
-                <div class="lg:col-6">
-                  <div class="bg-whtie rounded shadow p-6 text-center">
+                <div class="md:col-6">
+                  <div class="bg-whtie max-w-lg mx-auto md:max-w-auto rounded shadow p-6 py-10 text-center">
                     <h4
                       class="font-medium mb-2"
                       set:html={markdownify(title!)}

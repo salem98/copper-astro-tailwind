@@ -8,9 +8,7 @@ import { getEntry } from "astro:content";
 
 const { data } = await getEntry("team", "-index");
 const { banner, team_member, title } = data;
-
 const groups = [...new Set(team_member.map((member) => member.group))];
-console.log(groups);
 ---
 
 <Base {...data}>
