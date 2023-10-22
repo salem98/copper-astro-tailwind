@@ -1,14 +1,13 @@
 ---
-import Social from "@/components/Social.astro";
+import FilterAnimation from "@/helpers/FilterAnimation";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
-import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 
 const { data } = await getEntry("team", "-index");
 const { banner, team_member, title } = data;
-const groups = [...new Set(team_member.map((member) => member.group))];
+
 ---
 
 <Base {...data}>
@@ -22,64 +21,8 @@ const groups = [...new Set(team_member.map((member) => member.group))];
         </div>
       </div>
 
-      <ul class="flex justify-center items-center flex-wrap mt-7">
-        <li>
-          <button
-            type="button"
-            class="btn-sm btn-outline-primary border-2 hover:translate-y-[-3px] transition-transform m-3 inline-block capitalize text-primary py-3"
-          >
-            All Together</button
-          >
-        </li>
-        {
-          groups.map((group) => (
-            <li>
-              <button
-                type="button"
-                class="btn-sm border-2 btn-outline-primary hover:translate-y-[-3px] transition-transform m-3 inline-block capitalize text-primary py-3"
-              >
-                {group}
-              </button>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="row gy-5 gx-4 mt-5 lg:mt-12">
-        {
-          team_member.map((member) => (
-            <div class="lg:col-4 sm:col-6">
-              <div class="text-center ">
-                <div class="has-shapes inline-block">
-                  <Image
-                    class="mx-auto rounded-full"
-                    src={member.image}
-                    alt={member.name}
-                    width={250}
-                    height={250}
-                  />
-                  <div class="team-shapes">
-                    <div class="shape-2 shape-sm bg-primary/50 rounded-circle" />
-                    <div class="shape-1 shape-xs bg-secondary/50 rounded-circle" />
-                    <div class="shape-3 shape-sm-2 bg-tertiary/50 rounded-circle" />
-                  </div>
-                </div>
-                <div>
-                  <h5
-                    class="text-center font-medium mt-3.5"
-                    set:html={markdownify(member.name)}
-                  />
-                  <p
-                    class="mb-4 mt-2"
-                    set:html={markdownify(member.designation)}
-                  />
-                  <Social source={member.social} className="social-icons" />
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+     
+      <FilterAnimation client:load {...data} />
     </div>
   </section>
 </Base>

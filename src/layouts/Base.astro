@@ -8,6 +8,7 @@ import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
 import "aos/dist/aos.css";
 import { ViewTransitions } from "astro:transitions";
+import GotoTop from "./partials/GotoTop.astro";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -139,12 +140,12 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
-    <TwSizeIndicator />
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
+    <GotoTop />
     <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script is:inline>
       AOS.init({
@@ -153,6 +154,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       });
     </script>
     <script>
+      import "../scripts/in-circle";
       import "../scripts/modal";
     </script>
   </body>

@@ -8,7 +8,7 @@ input#nav-toggle:checked ~ label#hide-button {
 }
 
 input#nav-toggle:checked ~ .navbar-nav {
-  @apply max-lg:max-h-screen visible;
+  @apply max-lg:scale-100 visible;
 }
 
 .header {
@@ -17,7 +17,7 @@ input#nav-toggle:checked ~ .navbar-nav {
 
 // navbar items
 .navbar {
-  @apply relative flex flex-wrap items-center justify-between max-lg:overflow-y-hidden;
+  @apply lg:relative flex flex-wrap items-center justify-between;
 }
 
 .navbar-brand {
@@ -28,7 +28,7 @@ input#nav-toggle:checked ~ .navbar-nav {
 }
 
 .navbar-nav {
-  @apply text-center invisible lg:visible lg:text-left max-lg:max-h-0 transition-all duration-300;
+  @apply text-center invisible lg:visible lg:text-left max-lg:scale-75 transition-all duration-300 mt-5 lg:mt-0 p-5 lg:p-0 rounded max-lg:absolute max-lg:top-16 max-lg:left-1/2 max-lg:-translate-x-1/2;
 }
 
 .nav-item {
@@ -48,7 +48,7 @@ input#nav-toggle:checked ~ .navbar-nav {
 }
 
 .nav-link {
-  @apply block p-2 lg:p-3 font-medium font-secondary text-dark xl:text-base lg:text-sm   lg:px-2 lg:py-3  hover:text-primary transition-all cursor-pointer duration-200;
+  @apply block p-2 lg:p-3 font-medium font-secondary text-dark xl:text-base lg:text-sm lg:px-2 lg:py-3 hover:text-primary lg:transition-all cursor-pointer lg:duration-200;
   &.active {
     @apply text-primary;
   }
@@ -59,7 +59,7 @@ input#nav-toggle:checked ~ .navbar-nav {
 }
 
 .nav-dropdown-list {
-  @apply w-[220px] py-3 px-2.5 mx-auto bg-primary/10 lg:bg-transparent  rounded-md hidden lg:block text-left;
+  @apply w-[220px] py-3 px-2.5 mx-auto bg-opacity-10 bg-primary/10   lg:bg-transparent  rounded-md hidden lg:block text-left;
 
   &.active {
     @apply block;

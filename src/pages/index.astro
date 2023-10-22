@@ -166,8 +166,8 @@ const {
               <h2 set:html={markdownify(tools.title)} />
               <p set:html={markdownify(tools.content)} />
             </div>
-            <div class="lg:col-6">
-              <ul class="relative">
+            <div class="lg:col-6 h-96">
+              <ul class=" in-circle">
                 {tools.logos.map((logo, index) => {
                   const isEven = index % 2 === 0;
 
