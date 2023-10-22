@@ -1,7 +1,6 @@
 ---
 title: "Team"
 description: "this is meta description"
-layout: "team"
 draft: false
 
 banner:

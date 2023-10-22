@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 
 type Props = CollectionEntry<"pricing">["data"]["pricing_cards"][0] & {
   type: string;
-  layout?: "Pricing" | "Pricing-2";
+  outlet?: "pricing" | "pricing-2";
 };
 
 const PricingCard = (props: Props) => {
@@ -21,7 +21,7 @@ const PricingCard = (props: Props) => {
     services,
     yearly_price,
     type,
-    layout,
+    outlet,
   } = props || {};
 
   const { ref, inView } = useInView({
@@ -29,7 +29,7 @@ const PricingCard = (props: Props) => {
     triggerOnce: true,
   });
 
-  if (layout === "Pricing-2") {
+  if (outlet === "pricing-2") {
     return (
       <tr>
         <td>

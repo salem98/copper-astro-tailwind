@@ -398,7 +398,7 @@ const priceCollection = defineCollection({
   schema: metaObject.merge(
     z.object({
       offer: z.string().optional(),
-      layout: z.enum(["Pricing", "Pricing-2"]),
+      outlet: z.enum(["pricing", "pricing-2"]),
       banner: BannerObject,
       monthly_yearly_toggle: z.string(),
       pricing_cards: z.array(

@@ -1,9 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
-const { data, render } = await getEntryBySlug("faq", "-index");
+const { data, render } = await getEntry("faq", "-index");
 const { Content } = await render();
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "How It Works"
 description: "this is meta description"
-layout: "how-it-works"
 draft: false
 
 howItWorks:
