@@ -451,6 +451,5 @@ export const collections = {
   "how-it-works": howItWorksCollections,
   testimonial: testimonialCollections,
   career: careerCollection,
-  faq: faqCollections,
   pricing: priceCollection,
 };

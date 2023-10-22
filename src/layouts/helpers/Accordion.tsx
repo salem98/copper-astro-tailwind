@@ -2,7 +2,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
-const AccordionItem = ({
+const Accordion = ({
   title,
   children,
 }: {
@@ -14,7 +14,7 @@ const AccordionItem = ({
     <div>
       <button
         type="button"
-        onClick={() => setActive(true)}
+        onClick={() => setActive(!isActive)}
         className="btn btn-primary"
         dangerouslySetInnerHTML={{ __html: markdownify(title) }}
       />
@@ -39,4 +39,4 @@ const AccordionItem = ({
   );
 };
 
-export default AccordionItem;
+export default Accordion;

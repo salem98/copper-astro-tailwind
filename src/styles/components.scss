@@ -593,6 +593,10 @@
     @apply prose-headings:font-medium prose-headings:m-0 prose-headings:sm:text-xl prose-headings:text-lg;
   }
 
+  br {
+    @apply hidden lg:block;
+  }
+
   ::marker {
     @apply text-primary text-xl;
   }
