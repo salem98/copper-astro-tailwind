@@ -1,5 +1,5 @@
 .btn {
-  @apply inline-block rounded border border-transparent px-6 py-3.5 font-medium capitalize duration-300 transition-transform ease-in-out;
+  @apply inline-block rounded border border-transparent px-6 py-3.5 font-medium capitalize duration-300 transition-transform ease-in-out focus:outline-none;
 
   &.has-icon {
     @apply pr-12 relative overflow-hidden;
@@ -19,7 +19,7 @@
 }
 
 .btn-sm {
-  @apply rounded-sm px-6 py-[9px] font-medium text-[15px];
+  @apply rounded-sm px-6 py-[9px] font-medium text-[15px] focus:outline-none;
 }
 
 .btn-primary {

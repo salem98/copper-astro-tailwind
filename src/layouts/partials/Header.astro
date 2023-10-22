@@ -106,14 +106,19 @@ const { pathname } = Astro.url;
         <button
           type="button"
           data-modal
-          data-target="video-modal"
+          data-target="login-modal"
           class="btn btn-outline-primary btn-sm"
         >
           {navigation_buttons[0].label}
         </button>
       </li>
       <li class="mt-4 inline-block lg:hidden">
-        <button type="button" class="btn group hover:text-primary">
+        <button
+          data-modal
+          data-target="login-modal"
+          type="button"
+          class="btn group hover:text-primary"
+        >
           {navigation_buttons[1].label}
           <DynamicIcon
             className="inline-block ml-1 group-hover:translate-x-0.5 transition-transform"
@@ -140,7 +145,7 @@ const { pathname } = Astro.url;
         navigation_buttons[1].enable && (
           <button
             data-modal
-            data-target="register-modal"
+            data-target="login-modal"
             class="btn-sm hidden lg:inline-block group hover:text-primary"
           >
             {navigation_buttons[1].label}
@@ -156,26 +161,26 @@ const { pathname } = Astro.url;
   </nav>
 
   <script is:inline>
-    const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
-    navLinks.forEach((navlink) => {
-      navlink.addEventListener("click", function () {
-        this.nextElementSibling.classList.toggle("active");
-      });
+  const navLinks = document.querySelectorAll(".nav-dropdown .nav-link");
+  navLinks.forEach((navlink) => {
+    navlink.addEventListener("click", function () {
+      this.nextElementSibling.classList.toggle("active");
     });
+  });
   </script>
 </header>
 
-<div id="register-modal" class="overlay overflow-y-auto py-12">
-  <div class="modal-body max-w-lg p-6 sm:p-10">
-    <div
-      class="h-auto bg-white shadow relative flex-grow-0 max-h-screen rounded w-full overflow-auto"
-    >
+<div id="register-modal" class="overlay h-screen">
+  <div
+    class="modal-body max-w-lg max-h-[calc(100vh_-_50px)] h-full overflow-y-auto rounded"
+  >
+    <div class="bg-white shadow relative flex-grow-0 w-full rounded">
       <form>
         <div
-          class="flex justify-between border-b border-b-border p-6 pb-3 mb-3"
+          class="flex justify-between border-b sticky top-0 rounded-tl rounded-tr bg-white border-b-border p-6 pb-3 mb-3"
         >
           <h4>Sign up now</h4>
-          <DynamicIcon icon="FaX" />
+          <button modal-close type="button"> <DynamicIcon icon="FaX" /></button>
         </div>
         <div class="p-6">
           <div class="row">
@@ -247,6 +252,51 @@ const { pathname } = Astro.url;
             />
           </div>
           <button class="btn btn-primary mt-5">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="login-modal" class="overlay h-screen">
+  <div
+    class="modal-body max-w-lg max-h-[calc(100vh_-_50px)] h-full overflow-y-auto rounded"
+  >
+    <div class="bg-white shadow relative flex-grow-0 w-full rounded">
+      <form>
+        <div
+          class="flex justify-between border-b sticky top-0 rounded-tl rounded-tr bg-white border-b-border p-6 pb-3 mb-3"
+        >
+          <h4>Welcome back</h4>
+          <button modal-close type="button"> <DynamicIcon icon="FaX" /></button>
+        </div>
+        <div class="p-6">
+          <div class="mb-6">
+            <label for="name" class="form-label !text-base !mb-1">
+              Email Address <span class="text-dark">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              class="form-input"
+              placeholder="John Doe"
+              type="email"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="name" class="form-label !text-base !mb-1">
+              Password <span class="text-dark">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              class="form-input"
+              placeholder="John Doe"
+              type="password"
+            />
+          </div>
+
+          <button class="btn btn-primary mt-5">Sign In</button>
         </div>
       </form>
     </div>

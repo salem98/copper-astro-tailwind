@@ -10,6 +10,7 @@ function showModal(modalElement: HTMLElement, src: string | null): void {
     const isInsideModal: boolean = !!targetElement.closest(".modal-body");
     const isModalOpenButton: boolean =
       targetElement.hasAttribute("data-target");
+
     if (!isModalOpenButton && !isInsideModal) {
       if (src) {
         iframe.src = "";
@@ -20,6 +21,18 @@ function showModal(modalElement: HTMLElement, src: string | null): void {
       window.removeEventListener("click", closeModal);
     }
   }
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      if (src) {
+        iframe.src = "";
+      }
+      modalElement.classList.remove("active");
+      document.body.style.paddingInline = "";
+      document.body.classList.remove("overflow-hidden");
+      window.removeEventListener("click", closeModal);
+    }
+  });
 
   window.addEventListener("click", closeModal);
 }
@@ -35,6 +48,15 @@ function modal(): void {
       const modalElement: HTMLElement | null = document.querySelector(
         "#" + target!,
       );
+
+      const modalClose = modalElement?.querySelector("[modal-close]");
+
+      modalClose?.addEventListener("click", function () {
+        if (!modalElement) return;
+        modalElement.classList.remove("active");
+        document.body.style.paddingInline = "";
+        document.body.classList.remove("overflow-hidden");
+      });
       if (modalElement) {
         const scrollWidth: number =
           window.innerWidth - document.documentElement.clientWidth;
