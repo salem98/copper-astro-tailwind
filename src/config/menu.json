@@ -16,10 +16,6 @@
       "name": "Team",
       "url": "/team"
     },
-    {
-      "name": "Blog",
-      "url": "/blog"
-    },
 
     {
       "name": "Contact",
@@ -41,10 +37,6 @@
         {
           "name": "Career",
           "url": "/career"
-        },
-        {
-          "name": "Blog",
-          "url": "/blog"
         },
         {
           "name": "Terms & Condition",

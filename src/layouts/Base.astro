@@ -140,6 +140,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    <TwSizeIndicator />
     <Header />
     <main>
       <slot />
@@ -148,10 +149,10 @@ const { title, meta_title, description, image, noindex, canonical } =
     <GotoTop />
     <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script is:inline>
-      AOS.init({
-        duration: 600,
-        once: true,
-      });
+    AOS.init({
+      duration: 600,
+      once: true,
+    });
     </script>
     <script>
       import "../scripts/in-circle";

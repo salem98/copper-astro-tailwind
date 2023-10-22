@@ -159,40 +159,58 @@ const {
 
   {
     tools.enable && (
-      <section class="section bg-light-gray">
+      <section class="section-lg bg-light-gray relative">
+        <Image
+          class={"absolute top-0 left-0 w-full h-6 md:h-auto"}
+          width={732}
+          height={1050}
+          alt={""}
+          src={"/images/brushes/section-top.svg"}
+        />
+
+        <Image
+          class={"absolute bottom-0 left-0 w-full h-6 md:h-auto"}
+          width={732}
+          height={1050}
+          alt={""}
+          src={"/images/brushes/section-bottom.svg"}
+        />
+
         <div class="container">
-          <div class="row">
-            <div class="lg:col-6">
-              <h2 set:html={markdownify(tools.title)} />
-              <p set:html={markdownify(tools.content)} />
-            </div>
-            <div class="lg:col-6 h-96">
-              <ul class=" in-circle">
-                {tools.logos.map((logo, index) => {
-                  const isEven = index % 2 === 0;
+          <div class="lg:col-11 mx-auto">
+            <div class="row items-center gy-4 lg:gy-0 justify-center">
+              <div class="md:col-8 lg:col-4">
+                <h2 class="mb-4" set:html={markdownify(tools.title)} />
+                <p set:html={markdownify(tools.content)} />
+              </div>
+              <div class="lg:col-6 h-[300px] sm:h-[370px]  lg:h-96">
+                <ul class="in-circle flex items-center justify-center -translate-y-1/2 scale-[0.6] sm:scale-[0.8] lg:scale-100">
+                  {tools.logos.map((logo, index) => {
+                    const isEven = index % 2 === 0;
 
-                  const width =
-                    index === 0
-                      ? "w-[180px] h-[180px]"
-                      : !isEven
-                      ? "w-[114px] h-[114px]"
-                      : "w-[82px] h-[82px]";
+                    const width =
+                      index === 0
+                        ? "w-[180px] h-[180px]"
+                        : !isEven
+                        ? "w-[114px] h-[114px]"
+                        : "w-[82px] h-[82px]";
 
-                  return (
-                    <li
-                      class={`${width} bg-white flex items-center justify-center rounded-full`}
-                    >
-                      <Image
-                        class={"w-auto h-auto"}
-                        src={logo}
-                        alt={"brand-logo"}
-                        width={index === 1 ? 134 : !isEven ? 89 : 46}
-                        height={index === 1 ? 35 : !isEven ? 28 : 15}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
+                    return (
+                      <li
+                        class={`${width} bg-white flex items-center justify-center rounded-full`}
+                      >
+                        <Image
+                          class={"w-auto h-auto"}
+                          src={logo}
+                          alt={"brand-logo"}
+                          width={index === 1 ? 134 : !isEven ? 89 : 46}
+                          height={index === 1 ? 35 : !isEven ? 28 : 15}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

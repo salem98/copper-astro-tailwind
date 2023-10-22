@@ -5,7 +5,7 @@
 
 // section style
 .section {
-  @apply py-[5.357rem];
+  @apply py-16 lg:py-[5.357rem];
   &-sm {
     @apply py-16 xl:py-20;
   }
@@ -543,7 +543,7 @@
 
 // modal
 .overlay {
-  @apply flex items-center justify-center fixed inset-0 bg-black/30 backdrop-blur-sm z-[99999] opacity-0 invisible duration-500 ease-in-out;
+  @apply flex items-center justify-center fixed inset-0 bg-black/30 backdrop-blur-sm z-[99999] opacity-0 invisible transition-all duration-500 ease-in-out;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &.active {
@@ -556,7 +556,7 @@
 }
 
 .modal-body {
-  @apply delay-200 duration-500 ease-in-out flex flex-grow items-center justify-center max-w-[100vw] scale-[.95] opacity-0;
+  @apply transition-all delay-200 duration-500 ease-in-out flex flex-grow items-center justify-center max-w-[100vw] scale-[.85] opacity-0;
 }
 
 .modal-dialog {

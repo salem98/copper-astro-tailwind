@@ -1,87 +1,112 @@
-(function () {
-  // Helper function to extend objects with default values
-  function extendDefaults(source, properties) {
-    let result = {};
-    for (let property in source) {
-      if (source.hasOwnProperty(property)) {
-        result[property] = source[property];
-      }
+interface IncircleOptions {
+  color?: string;
+  backgroundColor?: string;
+  type?: number;
+  radius?: string;
+  start?: number;
+  top?: string;
+  left?: string;
+  duration?: number;
+}
+
+function extendDefaults<T>(source: T, properties: Partial<T>): T {
+  let result = {} as T;
+  for (let property in source) {
+    if ((source as any).hasOwnProperty(property)) {
+      result[property] = source[property];
     }
-    for (let property in properties) {
-      if (properties.hasOwnProperty(property)) {
-        result[property] = properties[property];
-      }
+  }
+  for (let property in properties) {
+    if (properties.hasOwnProperty(property)) {
+      (result as any)[property] = properties[property] as T[keyof T];
     }
-    return result;
+  }
+  return result;
+}
+
+function incircle(selector: string, options: IncircleOptions): void {
+  let elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
+  if (!elements || elements.length === 0) {
+    return;
   }
 
-  // Vanilla JavaScript version of the plugin
-  function incircle(selector, options) {
-    var elements = document.querySelectorAll(selector);
-    if (!elements || elements.length === 0) {
-      return;
-    }
+  let defaults: IncircleOptions = {
+    color: "#556b2f",
+    backgroundColor: "white",
+    type: 1,
+    radius: "12em",
+    start: -90,
+    top: "50%",
+    left: "0px",
+    duration: 1500,
+  };
 
-    // Default options.
-    var defaults = {
-      color: "#556b2f",
-      backgroundColor: "white",
-      type: 1, // circle type - 1 whole, 0.5 half, 0.25 quarter
-      radius: "12em", // distance from center
-      start: -90, // shift start from 0
-      top: "200px",
-      left: "200px",
-    };
+  let settings = extendDefaults<IncircleOptions>(defaults, options);
 
-    // Merge the default options with the user-provided options
-    var settings = extendDefaults(defaults, options);
+  elements.forEach(function (element) {
+    if (!element) return;
+    element.style.position = "relative";
+    element.style.top = settings.top || "0px";
+    element.style.left = settings.left || "0px";
+    element.style.listStyleType = "none";
+    element.style.margin = "0";
+    element.style.padding = "0";
 
-    elements.forEach(function (element) {
-      element.style.position = "relative";
-      element.style.top = settings.top;
-      element.style.left = settings.left;
-      element.style.listStyleType = "none";
-      element.style.margin = 0;
-      element.style.padding = 0;
+    var childElements = Array.from(element.children).filter(
+      function (el, index) {
+        return settings.type === 1 || index > 0;
+      },
+    ) as HTMLElement[];
 
-      var childElements = Array.from(element.children).filter(
-        function (el, index) {
-          return settings.type === 1 || index > 0;
-        },
-      );
+    var numberOfElements =
+      settings.type === 1 ? childElements.length - 1 : childElements.length - 1;
+    var slice = (360 * settings.type!) / numberOfElements;
 
-      var numberOfElements =
-        settings.type === 1 ? childElements.length : childElements.length - 1;
-      var slice = (360 * settings.type) / numberOfElements;
+    childElements.forEach(function (child, i) {
+      if (i === 0 || !child) {
+        return;
+      }
 
-      childElements.forEach(function (child, i) {
-        var rotate = slice * i + settings.start;
-        var rotateReverse = rotate * -1;
+      var rotate = slice * i + settings.start!;
+      var rotateReverse = rotate * -1;
 
-        child.style.position = "absolute";
-        child.style.transition = "transform 2s linear";
-        child.style.transform =
-          "rotate(" +
-          rotate +
-          "deg) translate(" +
-          settings.radius +
-          ") rotate(" +
-          rotateReverse +
-          "deg)";
-      });
+      child.style.position = "absolute";
+      child.style.transition = `transform ${settings.duration}ms ease-in-out`;
+      child.style.transform =
+        "rotate(" +
+        rotate +
+        "deg) translate(" +
+        settings.radius +
+        ") rotate(" +
+        rotateReverse +
+        "deg)";
     });
-  }
+  });
+}
 
-  window.incircle = incircle;
-})();
+function incircleInit() {
+  const elements = document.querySelector(".in-circle");
+  if (!elements) return;
 
-// Usage example:
-incircle(".in-circle", {
-  color: "red",
-  backgroundColor: "yellow",
-  type: 0.5,
-  radius: "10em",
-  start: 0,
-  top: "100px",
-  left: "100px",
-});
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          incircle(".in-circle", {
+            type: 1,
+            radius: "13em",
+            start: 0,
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.6,
+    },
+  );
+
+  observer.observe(elements);
+}
+
+incircleInit();

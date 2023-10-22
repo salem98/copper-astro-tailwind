@@ -22,7 +22,7 @@ const posts = await getCollection("blog", ({ data, id }) => {
           <p set:html={markdownify(banner?.description!)} />
         </div>
       </div>
-      <div class="row mt-11 justify-center items-center">
+      <div class="row mt-8 lg:mt-11 justify-center items-center">
         {
           posts.map((post) => (
             <div class="lg:col-4 md:col-6 mb-5">

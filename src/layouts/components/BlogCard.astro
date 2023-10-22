@@ -38,7 +38,7 @@ const { title, image, date, categories } = data;
       }
     </div>
     <a
-      class="h5 font-medium block my-2.5 hover:text-primary transition underline-offset-1 decoration-black decoration-1"
+      class="h5 font-medium block my-2.5 hover:text-primary hover:underline decoration-1"
       href={`/${blog_folder}/${slugify(slug)}`}
       set:html={markdownify(title!)}
     />
